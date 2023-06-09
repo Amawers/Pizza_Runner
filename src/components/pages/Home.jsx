@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 
 export default function Home() {
   return (
-    <Stack spacing={2} direction="row">
+    <><Stack spacing={2} direction="row">
       <Link to="/runner">
         <Button variant="text">Runner</Button>
       </Link>
@@ -13,6 +13,6 @@ export default function Home() {
       <Link to="/AdminDashboard">
         <Button variant="outlined">Log in as Admin</Button>
       </Link>
-    </Stack>
+    </Stack></>
   );
 }

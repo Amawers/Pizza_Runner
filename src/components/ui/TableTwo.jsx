@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 export default function TableTwo() {
   const [orders, setOrders] = useState([]);
@@ -35,28 +30,18 @@ export default function TableTwo() {
     <>
       <label htmlFor="targetDate">Target Date:</label>
       <input type="date" id="targetDate" value={targetDate} onChange={handleDateChange} />
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">order_count</TableCell>
-              <TableCell align="right">pizza_id</TableCell>
-              <TableCell align="right">pizza_name</TableCell>
-              <TableCell align="right">order_date</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map((order, index) => (
-              <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="right">{order.order_count}</TableCell>
-                <TableCell align="right">{order.pizza_id}</TableCell>
-                <TableCell align="right">{order.pizza_name}</TableCell>
-                <TableCell align="right">{order.order_date}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Paper elevation={3} sx={{ padding: 2, marginTop: 2, width: '300px' }}>
+        <Typography variant="h3" gutterBottom>
+          hsahd Pizzas
+        </Typography>
+        {orders.map((order, index) => (
+          <Typography key={index} variant="body1">
+            Pizza Name: {order.pizza_name} <br />
+            Order Count: {order.order_count} <br />
+            Order Date: {order.order_date}
+          </Typography>
+        ))}
+      </Paper>
     </>
   );
 }

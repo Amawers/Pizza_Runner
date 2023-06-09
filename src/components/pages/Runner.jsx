@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
-
-
 export default function Runner() {
   const [runnerId, setRunnerId] = useState("");
   const [registrationDate, setRegistrationDate] = useState("");

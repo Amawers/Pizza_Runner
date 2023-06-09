@@ -10,7 +10,7 @@ export default function Home() {
         <Button variant="text">Runner</Button>
       </Link>
       <Button variant="contained">Customer</Button>
-      <Link to="/LogInAdmin">
+      <Link to="/AdminDashboard">
         <Button variant="outlined">Log in as Admin</Button>
       </Link>
     </Stack>

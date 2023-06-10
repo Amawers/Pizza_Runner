@@ -16,18 +16,30 @@ export default function TableSix() {
       const data = await response.json();
       setOrders(data);
     } catch (error) {
-      console.error('Error fetching canceled orders data:', error);
+      console.error('Error fetching orders data:', error);
+    }
+  };
+
+  const handleCancel = async (orderId, runnerId) => {
+    try {
+      await fetch('http://localhost/cancel-order.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `order_id=${orderId}&runner_id=${runnerId}`,
+      });
+
+      console.log(`Order with ID ${orderId} canceled successfully`);
+      fetchOrders();
+    } catch (error) {
+      console.error('Error canceling the order:', error);
     }
   };
 
   useEffect(() => {
     fetchOrders();
   }, []);
-
-  const handleCancel = (orderId) => {
-    // Handle cancel logic here, such as making a backend API call to update the order status
-    console.log(`Cancel order with ID: ${orderId}`);
-  };
 
   return (
     <>
@@ -43,6 +55,7 @@ export default function TableSix() {
               <TableCell align="right">topping_extras</TableCell>
               <TableCell align="right">order_date</TableCell>
               <TableCell align="right">order_time</TableCell>
+              <TableCell align="right">runner_id</TableCell>
               <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
@@ -56,8 +69,9 @@ export default function TableSix() {
                 <TableCell align="right">{order.topping_extras}</TableCell>
                 <TableCell align="right">{order.order_date}</TableCell>
                 <TableCell align="right">{order.order_time}</TableCell>
+                <TableCell align="right">{order.runner_id}</TableCell>
                 <TableCell align="right">
-                  <button onClick={() => handleCancel(order.order_id)}>Cancel</button>
+                  <button onClick={() => handleCancel(order.order_id, order.runner_id)}>Cancel</button>
                 </TableCell>
               </TableRow>
             ))}

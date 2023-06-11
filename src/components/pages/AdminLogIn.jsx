@@ -21,8 +21,10 @@ const inputFieldIcon = {
 };
 
 const formTitleStyle = {
-  marginBottom: "4px",
-};
+    marginBottom: "4px",
+    fontFamily: "'Carter One', cursive",
+  };
+  
 
 const formStyle = {
   height: "215px",
@@ -159,7 +161,7 @@ function AdminLogIn() {
           sm={4}
           md={7}
           sx={{
-            backgroundColor: "#D72323", // CHANGE
+            backgroundImage: "url(https://cottageinn.com/app/uploads/2020/10/life-pizza-meme.png)", // CHANGE
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -179,10 +181,10 @@ function AdminLogIn() {
           sx={loginSide}
         >
           <Box sx={formContainerStyle}>
-          <Image src="src\assets\logo\logo1.png" fit="contain" height="150px"/>
+          <Image src="src\assets\logo\logo1.png" fit="contain" height="60px" sx={{ marginBottom: 3 }}/>
 
-            <Typography component="h1" variant="h5" sx={formTitleStyle}>
-              Sign in
+            <Typography component="h1" variant="h6" sx={formTitleStyle}>
+              Welcome Admin
             </Typography>
             <Box
               component="form"

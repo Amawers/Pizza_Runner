@@ -31,7 +31,7 @@ export default function TableSix() {
       });
 
       console.log(`Order with ID ${orderId} canceled successfully`);
-      fetchOrders();
+      setOrders(prevOrders => prevOrders.filter(order => order.order_id !== orderId));
     } catch (error) {
       console.error('Error canceling the order:', error);
     }

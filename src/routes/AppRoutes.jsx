@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-const Home = React.lazy(() => import("../components/pages/Home"));
-const Runner = React.lazy(() => import("../components/pages/Runner"));
-const AdminDashboard = React.lazy(() =>
-  import("../components/pages/AdminDashboard")
-);
+import Home from "../components/pages/Home";
+import Runner from "../components/pages/Runner";
+import AdminLogIn from "../components/pages/AdminLogIn";
+import AdminDashboard from "../components/pages/AdminDashboard";
+import ProtectedRoute from "../components/pages/ProtectedRoute";
 
 export default function AppRoutes() {
   return (
@@ -13,7 +12,11 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/runner" element={<Runner />} />
-        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/AdminLogIn" element={<AdminLogIn />} />
+        <Route
+          path="/AdminDashboard"
+          element={<ProtectedRoute component={AdminDashboard} />}
+        />
       </Routes>
     </BrowserRouter>
   );

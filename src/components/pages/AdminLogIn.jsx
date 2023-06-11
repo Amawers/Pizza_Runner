@@ -1,15 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Grid, Paper, Box, Typography, TextField, Button } from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import Image from 'mui-image'
+
+
+
+const formContainerStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "space-between",
+};
+
+const inputFieldIcon = {
+  margin: "4px",
+  color: "gray",
+};
+
+const formTitleStyle = {
+  marginBottom: "4px",
+};
+
+const formStyle = {
+  height: "215px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+};
+
+const formInputStyle = {
+  margin: "normal",
+  required: true,
+  fullWidth: true,
+};
+
+const formButtonStyle = {
+  type: "submit",
+  fullWidth: true,
+  variant: "contained",
+  marginTop: "12px",
+  marginBottom: "8px",
+};
+
+const errorTextStyle = {
+  color: "red",
+  marginTop: "0.5rem",
+};
+
+const loginSide = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const appContainerStyle = {
+    height: "500px",
+    width: "1000px",
+  };
+
+
 
 function AdminLogIn() {
   const navigate = useNavigate();
-  const [user, setUser] = useState('');
-  const [pass, setPass] = useState('');
-  const [error, setError] = useState('');
-  const [msg, setMsg] = useState('');
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+  const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
 
+  
   useEffect(() => {
-    let loginStatus = localStorage.getItem('loginStatus');
+    let loginStatus = localStorage.getItem("loginStatus");
     if (loginStatus) {
       setError(loginStatus);
       setTimeout(function () {
@@ -18,22 +82,16 @@ function AdminLogIn() {
       }, 3000);
     }
     setTimeout(function () {
-      setMsg('');
+      setMsg("");
     }, 5000);
   }, [msg]);
 
   const handleInputChange = (e, type) => {
-    setError('');
-    if (type === 'user') {
+    setError("");
+    if (type === "user") {
       setUser(e.target.value);
-      if (e.target.value === '') {
-        setError('Username has been left blank');
-      }
-    } else if (type === 'pass') {
+    } else if (type === "pass") {
       setPass(e.target.value);
-      if (e.target.value === '') {
-        setError('Password has been left blank');
-      }
     }
   };
 
@@ -73,84 +131,133 @@ function AdminLogIn() {
       setError("All fields are required!");
     }
   }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    loginSubmit();
+  };
+
   
-  
-
-  const formStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'left',
-    justifyItems: 'flex-start',
-    borderRadius: '5px',
-    padding: '30px',
-    boxShadow: '2px 4px 10px rgba(0, 0, 0, 0.7)'
-  };
-
-  const inputStyle = {
-    marginTop: '0.5rem',
-    fontSize: '1rem',
-    width: '300px',
-    border: '1px solid gray',
-    borderRadius: '5px',
-    padding: '0.5rem'
-  };
-
-  const buttonStyle = {
-    marginTop: '0.5rem',
-    fontSize: '1rem',
-    border: 'none',
-    borderRadius: '5px',
-    padding: '0.5rem',
-    background: 'green',
-    color: 'white',
-    cursor: 'pointer'
-  };
-
-  const labelStyle = {
-    fontSize: 'small',
-    marginTop: '0.5rem'
-  };
-
-  const pStyle = {
-    color: 'blue',
-    cursor: 'pointer'
-  };
-
-  const errorStyle = {
-    color: 'red',
-    marginTop: '0.5rem'
-  };
+  const theme = createTheme({
+    palette: {
+      background: {
+        default: "black", // Set the default background color to black
+      },
+    },
+  });
 
   return (
-    <div>
-      <h2>Admin Login</h2>
-      <form style={formStyle}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={user}
-            onChange={(e) => handleInputChange(e, 'user')}
-            style={inputStyle}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={pass}
-            onChange={(e) => handleInputChange(e, 'pass')}
-            style={inputStyle}
-          />
-        </label>
-        <button type="button" onClick={loginSubmit} style={buttonStyle}>
-          Log In
-        </button>
-        {error && <p style={errorStyle}>{error}</p>}
-      </form>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Grid
+        container
+        component="main"
+        sx={appContainerStyle}
+      >
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundColor: "#D72323", // CHANGE
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          elevation={24}
+          component={Paper}
+
+        />
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={24}
+          square
+          sx={loginSide}
+        >
+          <Box sx={formContainerStyle}>
+          <Image src="src\assets\logo\logo1.png" fit="contain" height="150px"/>
+
+            <Typography component="h1" variant="h5" sx={formTitleStyle}>
+              Sign in
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={formStyle}
+            >
+              <TextField
+                error={
+                  error &&
+                  (user === "" ||
+                    error === "Invalid username!" ||
+                    error === "Invalid password!")
+                }
+                id="username"
+                label="Email"
+                name="username"
+                value={user}
+                onChange={(e) => handleInputChange(e, "user")}
+                helperText={
+                  error &&
+                  (user === "" ||
+                    error === "Invalid username!" ||
+                    error === "Invalid password!") &&
+                  "Incorrect entry."
+                }
+                sx={formInputStyle}
+                InputProps={{
+                    endAdornment: <AlternateEmailIcon sx={inputFieldIcon} />,
+                  }}
+              />
+              <TextField
+                error={
+                  error &&
+                  (pass === "" ||
+                    error === "Invalid password!" ||
+                    error === "Invalid username!")
+                }
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={pass}
+                onChange={(e) => handleInputChange(e, "pass")}
+                helperText={
+                  error &&
+                  (pass === "" ||
+                    error === "Invalid password!" ||
+                    error === "Invalid username!") &&
+                  "Incorrect entry."
+                }
+                sx={formInputStyle}
+                InputProps={{
+                  endAdornment: <LockOutlinedIcon sx={inputFieldIcon} />,
+                }}
+              />
+
+              <Button
+                variant="contained"
+                color="error"
+                sx={formButtonStyle}
+                onClick={handleSubmit}
+              >
+                Sign In
+              </Button>
+              {error && (
+                <Typography variant="body2" color="error" sx={errorTextStyle}>
+                  {error}
+                </Typography>
+              )}
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
 

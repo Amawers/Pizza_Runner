@@ -5,20 +5,15 @@ import TableFour from "../ui/TableFour";
 import TableFive from "../ui/TableFive";
 import TableSix from "../ui/TableSix";
 import AdminDashboardNav from "../ui/AdminDashboardNav";
-import BookingsCard from "../ui/BookingsCard";
 
 
 export default function AdminDashboard() {
   return (
     <>
     <AdminDashboardNav />
-    <BookingsCard /> 
-
     <div>
-      <div style={{ marginTop: "50px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around"}}>
         <TableOne />
-      </div>
-      <div style={{ marginTop: "50px" }}>
         <TableTwo />
       </div>
       <div style={{ marginTop: "100px" }}>

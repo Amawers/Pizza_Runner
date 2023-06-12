@@ -9,7 +9,7 @@ import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 function CardAbove() {
   return (
     <Paper
-      elevation={12}
+      elevation={8}
       sx={{
         borderRadius: "6px",
         position: "relative",
@@ -77,7 +77,7 @@ export default function TableOne() {
         sx={{
           marginTop: 2,
           width: "261.5px",
-          height: "145px",
+          height: "170px",
           borderRadius: "10px",
           position: "relative",
           top: "-25px",
@@ -102,7 +102,7 @@ export default function TableOne() {
               <Typography
                 key={index}
                 variant="body1"
-                sx={{ marginLeft: "125px", fontWeight: "bold" }}
+                sx={{ fontWeight: "bold", fontSize: "20px"}}
               >
                 {sale.num_pizzas_ordered} <br />
               </Typography>
@@ -117,7 +117,7 @@ export default function TableOne() {
               <Divider sx={{ width: "160px" }} />
             </div>
             {sales.map((sale, index) => (
-              <Typography key={index} variant="body1" sx={{ fontSize: "14px" }}>
+              <Typography key={index} variant="body1" sx={{ fontSize: "14px", padding: "10px" }}>
                 {formattedDate}
               </Typography>
             ))}
@@ -159,8 +159,8 @@ export default function TableOne() {
               justifyContent: "center",
               alignItems: "center",
               position: "absolute",
-              top: "63%",
-              right: "35px", // Adjust the value as per your preference
+              top: "80%",
+              right: "12px", // Adjust the value as per your preference
               transform: "translateY(-50%)",
               width: "40px",
               height: "40px",

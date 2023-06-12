@@ -10,13 +10,18 @@ export default function Home() {
     navigate("/AdminLogIn");
   };
 
+  const handleCustomerLogin = () => {
+    navigate("/CustomerLogin");
+  };
+
+
   return (
     <>
       <Stack spacing={2} direction="row">
         <Link to="/runner">
           <Button variant="text">Runner</Button>
         </Link>
-        <Button variant="contained">Customer</Button>
+        <Button variant="contained" onClick={handleCustomerLogin}>Customer</Button>
         <Button variant="outlined" onClick={handleAdminLogin}>
           Log in as Admin
         </Button>

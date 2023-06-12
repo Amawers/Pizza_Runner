@@ -4,30 +4,36 @@ import TableThree from "../ui/TableThree";
 import TableFour from "../ui/TableFour";
 import TableFive from "../ui/TableFive";
 import TableSix from "../ui/TableSix";
+import AdminDashboardNav from "../ui/AdminDashboardNav";
+import BookingsCard from "../ui/BookingsCard";
 
 
 export default function AdminDashboard() {
   return (
+    <>
+    <AdminDashboardNav />
+    <BookingsCard /> 
+
     <div>
       <div style={{ marginTop: "50px" }}>
-        <TableOne  />
+        <TableOne />
       </div>
       <div style={{ marginTop: "50px" }}>
-        <TableTwo  />
+        <TableTwo />
       </div>
       <div style={{ marginTop: "100px" }}>
-        <TableThree  />
+        <TableThree />
       </div>
       <div style={{ marginTop: "100px" }}>
-        <TableFour  />
+        <TableFour />
       </div>
       <div style={{ marginTop: "100px" }}>
-        <TableFive  />
+        <TableFive />
       </div>
       <div style={{ marginTop: "100px" }}>
-        <TableSix  />
+        <TableSix />
       </div>
 
-    </div>
+    </div></>
   );
 }

@@ -61,7 +61,7 @@ const appContainerStyle = {
   width: "1000px",
 };
 
-function AdminLogIn() {
+function CustomerLogIn() {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
@@ -93,7 +93,7 @@ function AdminLogIn() {
 
   function loginSubmit() {
     if (user !== "" && pass !== "") {
-      var url = "http://localhost/login.php";
+      var url = "http://localhost/login-customer.php";
       var headers = {
         "Content-Type": "application/json",
       };
@@ -178,7 +178,7 @@ function AdminLogIn() {
             />
 
             <Typography component="h1" variant="h6" sx={formTitleStyle}>
-              Welcome Admin
+              Welcome Customer!
             </Typography>
             <Box
               component="form"
@@ -193,7 +193,6 @@ function AdminLogIn() {
                       error === "Invalid username!" ||
                       error === "Invalid password!")
                 )}
-                id="username"
                 label="Email"
                 name="username"
                 value={user}
@@ -221,7 +220,6 @@ function AdminLogIn() {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
                 value={pass}
                 onChange={(e) => handleInputChange(e, "pass")}
                 helperText={
@@ -258,4 +256,4 @@ function AdminLogIn() {
   );
 }
 
-export default AdminLogIn;
+export default CustomerLogIn;

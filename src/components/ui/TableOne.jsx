@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import EventIcon from "@mui/icons-material/Event";
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 
 function CardAbove() {
   return (
@@ -17,13 +18,13 @@ function CardAbove() {
         height: "64px",
         marginBottom: "-20px",
         marginLeft: "20px",
+        backgroundColor: "green",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
       }}
     >
-      <img
-        src="src\assets\images\general.png"
-        alt="Card Above Image"
-        style={{ width: "100%", height: "100%", borderRadius: "6px",}}
-      />
+      <LocalPizzaIcon sx={{ color: "white", width: "40px", height: "40px"}} />
     </Paper>
   );
 }

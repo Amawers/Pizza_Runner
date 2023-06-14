@@ -15,6 +15,7 @@ export default function AdminDashboard() {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around"}}>
         <TableOne />
         <TableTwo />
+        <TableTwo />
       </div>
       <div style={{ marginTop: "100px" }}>
         <TableThree />

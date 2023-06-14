@@ -7,6 +7,40 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+function CardAbove() {
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Paper
+        elevation={8}
+        sx={{
+          borderRadius: "6px",
+          position: "relative",
+          zIndex: 2,
+          width: "880px",
+          height: "64px",
+          marginBottom: "-30px",
+          backgroundColor: "pink",
+          display: "flex",
+          alignItems: "center"
+        }}
+      >
+        <span style={{ padding: "10px", color: "white", fontWeight: "bolder" }}>Successful Orders</span>
+      </Paper>
+    </div>
+  );
+}
+
+const headStyle = {
+  fontSize: '12px',
+  color: 'gray',
+  fontWeight: 'bold',
+  paddingTop: "50px",
+};
+
+const rowStyle = {
+  fontSize: '12px',
+};
+
 export default function TableSix() {
   const [orders, setOrders] = useState([]);
 
@@ -43,34 +77,36 @@ export default function TableSix() {
 
   return (
     <>
-      <button onClick={fetchOrders}>Reload Data</button>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+            <CardAbove />
+ 
+            <Paper elevation={12} sx={{ padding: "20px" }}>
+      <TableContainer>
+        <Table sx={{ minWidth: 650, padding: "100px"}} aria-label="simple table">
+          <TableHead >
             <TableRow>
-              <TableCell align="right">customer_id</TableCell>
-              <TableCell align="right">order_id</TableCell>
-              <TableCell align="right">pizza_id</TableCell>
-              <TableCell align="right">topping_exclusions</TableCell>
-              <TableCell align="right">topping_extras</TableCell>
-              <TableCell align="right">order_date</TableCell>
-              <TableCell align="right">order_time</TableCell>
-              <TableCell align="right">runner_id</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell align="right" style={headStyle}>customer_id</TableCell>
+              <TableCell align="right" style={headStyle}>order_id</TableCell>
+              <TableCell align="right" style={headStyle}>pizza_id</TableCell>
+              <TableCell align="right" style={headStyle}>topping_exclusions</TableCell>
+              <TableCell align="right" style={headStyle}>topping_extras</TableCell>
+              <TableCell align="right" style={headStyle}>order_date</TableCell>
+              <TableCell align="right" style={headStyle}>order_time</TableCell>
+              <TableCell align="right" style={headStyle}>runner_id</TableCell>
+              <TableCell align="right" style={headStyle}>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orders.map((order, index) => (
               <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="right">{order.customer_id}</TableCell>
-                <TableCell align="right">{order.order_id}</TableCell>
-                <TableCell align="right">{order.pizza_id}</TableCell>
-                <TableCell align="right">{order.topping_exclusions}</TableCell>
-                <TableCell align="right">{order.topping_extras}</TableCell>
-                <TableCell align="right">{order.order_date}</TableCell>
-                <TableCell align="right">{order.order_time}</TableCell>
-                <TableCell align="right">{order.runner_id}</TableCell>
-                <TableCell align="right">
+                <TableCell align="right" style={rowStyle}>{order.customer_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.order_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.pizza_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.topping_exclusions}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.topping_extras}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.order_date}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.order_time}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.runner_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>
                   <button onClick={() => handleCancel(order.order_id, order.runner_id)}>Cancel</button>
                 </TableCell>
               </TableRow>
@@ -78,6 +114,7 @@ export default function TableSix() {
           </TableBody>
         </Table>
       </TableContainer>
+      </Paper>
     </>
   );
 }

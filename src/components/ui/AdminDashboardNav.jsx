@@ -6,11 +6,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 function AdminDashboardNav() {
   return (
-    <Container fixed style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+    <Container fixed style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: "center" }}>
         <div style={{ display: 'flex', alignItems: 'center', marginRight: '20px' }}>
           <HomeIcon fontSize="small" style={{ color: '#6c757d' }} />
-          <span style={{ marginLeft: '10px', color: '#6c757d', fontSize: '14px', fontWeight: 'bold' }}>Dashboard</span>
+          <span style={{ marginLeft: '10px', color: '#6c757d', fontSize: '14px', fontWeight: 'bold' }}> / Dashboard</span>
         </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '60px'}}>

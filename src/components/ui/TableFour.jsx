@@ -81,9 +81,6 @@ export default function TableFour() {
                 <TableCell align="right" style={headStyle}>
                   PICKUP DATE
                 </TableCell>
-                <TableCell align="right" style={headStyle}>
-                  CANCELLATION TYPE
-                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

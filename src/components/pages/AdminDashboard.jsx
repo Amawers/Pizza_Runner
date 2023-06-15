@@ -4,6 +4,7 @@ import TableThree from "../ui/TableThree";
 import TableFour from "../ui/TableFour";
 import TableFive from "../ui/TableFive";
 import TableSix from "../ui/TableSix";
+import TableSeven from "../ui/TableSeven";
 import AdminDashboardNav from "../ui/AdminDashboardNav";
 
 
@@ -27,6 +28,9 @@ export default function AdminDashboard() {
       </div>
       <div style={{ marginTop: "100px" }}>
         <TableSix />
+      </div>
+      <div style={{ marginTop: "100px" }}>
+        <TableSeven />
       </div>
 
     </div></>

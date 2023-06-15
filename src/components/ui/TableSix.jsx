@@ -24,7 +24,7 @@ function CardAbove() {
           alignItems: "center"
         }}
       >
-        <span style={{ padding: "10px", color: "white", fontWeight: "bolder" }}>Successful Orders</span>
+        <span style={{ padding: "10px", color: "white", fontWeight: "bolder" }}>Customer Orders</span>
       </Paper>
     </div>
   );

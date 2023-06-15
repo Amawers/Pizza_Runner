@@ -116,7 +116,8 @@ function CustomerLogIn() {
           } else {
             setMsg(response[0].result);
             localStorage.setItem("login", true);
-            navigate("/AdminDashboard", { replace: true });
+            localStorage.setItem("customerId", response[0].customer_id); // Store the customer_id
+            navigate("/CustomerDashboard", { replace: true });
           }
         })
         .catch((err) => {

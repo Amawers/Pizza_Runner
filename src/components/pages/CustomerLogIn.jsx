@@ -6,12 +6,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Image from "mui-image";
 
-const formContainerStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "space-between",
-};
+import Stack from "@mui/material/Stack";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import bgImage from "../../assets/images/bg-home.png";
+import "../../styling/Home.css";
+
 
 const inputFieldIcon = {
   margin: "4px",
@@ -21,13 +21,6 @@ const inputFieldIcon = {
 const formTitleStyle = {
   marginBottom: "4px",
   fontFamily: "'Carter One', cursive",
-};
-
-const formStyle = {
-  height: "215px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
 };
 
 const formInputStyle = {
@@ -48,17 +41,24 @@ const errorTextStyle = {
   color: "red",
   marginTop: "0.5rem",
 };
-
 const loginSide = {
+  position: "relative",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  width: "300px",
+  margin: "auto",
+  padding: "40px"
 };
 
+
 const appContainerStyle = {
-  height: "500px",
-  width: "1000px",
+  height: "100vh",
+  width: "100vw",
+  backgroundColor: "blue",
+  display: "flex",
+  justifyContent: "center",
 };
 
 function CustomerLogIn() {
@@ -144,33 +144,79 @@ function CustomerLogIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={appContainerStyle}>
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage:
-              "url(https://cottageinn.com/app/uploads/2020/10/life-pizza-meme.png)", // CHANGE
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          elevation={24}
-          component={Paper}
+       <div className="back">
+        <Image
+          src="src\assets\logo\logo-pizzarunner.png"
+          fit="contain"
+          height="50px"
+          sx={{ paddingRight: "100px" }}
         />
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={24}
-          square
+      </div>
+      <div className="arrow" />
+      <AppBar  sx={{ backgroundColor: "black" }}>
+        <Toolbar sx={{ justifyContent: "flex-end" }}>
+          <Stack
+            spacing={2}
+            direction="row"
+            sx={{ marginLeft: "auto", marginRight: "auto" }}
+          >
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "#BA110C",
+                backgroundColor: "white"
+              }}
+            >
+              HOME
+            </Button>
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "#FFF6E6"
+              }}
+            >
+              ABOUT US
+            </Button>
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "#FFF6E6"
+              }}
+            >
+              CONTACT INFO
+            </Button>
+          </Stack>
+          <Stack spacing={2} direction="row">
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "black",
+                background: "linear-gradient(#9B8B6E, #FFF6E6)",
+              }}
+            >
+              LOG IN
+            </Button>
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "black",
+                background: "linear-gradient(#9B8B6E, #FFF6E6)",
+              }}
+            >
+              REGISTER
+            </Button>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+      <Grid container component="main" sx={appContainerStyle}>
+        <Paper
           sx={loginSide}
         >
-          <Box sx={formContainerStyle}>
             <Image
               src="src\assets\logo\logo1.png"
               fit="contain"
@@ -181,12 +227,6 @@ function CustomerLogIn() {
             <Typography component="h1" variant="h6" sx={formTitleStyle}>
               Welcome Customer!
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={formStyle}
-            >
               <TextField
                 error={Boolean(
                   error &&
@@ -249,9 +289,7 @@ function CustomerLogIn() {
                   {error}
                 </Typography>
               )}
-            </Box>
-          </Box>
-        </Grid>
+        </Paper>
       </Grid>
     </ThemeProvider>
   );

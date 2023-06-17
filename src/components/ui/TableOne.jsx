@@ -97,58 +97,67 @@ export default function TableOne() {
           Ordered Pizzas
         </Typography>
         {showSalesData && (
-          <>
-            {sales.map((sale, index) => (
-              <Typography
-                key={index}
-                variant="body1"
-                sx={{ fontWeight: "bold", fontSize: "20px"}}
-              >
-                {sale.num_pizzas_ordered} <br />
-              </Typography>
-            ))}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                padding: "10px",
-              }}
-            >
-              <Divider sx={{ width: "160px" }} />
-            </div>
-            {sales.map((sale, index) => (
-              <Typography key={index} variant="body1" sx={{ fontSize: "14px", padding: "10px" }}>
-                {formattedDate}
-              </Typography>
-            ))}
-          </>
-        )}
-        {showDatePicker && (
-          <div>
-            <input
-              type="date"
-              id="targetDate"
-              value={targetDate}
-              onChange={handleDateChange}
-            />
-            <button
-              style={{
-                backgroundColor: "blue",
-                color: "white",
-                border: "none",
-                padding: "6px 10px",
-                fontSize: "14px",
-                cursor: "pointer",
-                margin: "5px",
-              }}
-              onClick={handleOkButtonClick}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "darkblue")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "blue")}
-            >
-              Ok
-            </button>
-          </div>
-        )}
+  <>
+    {sales.map((sale, index) => (
+      <Typography
+        key={index}
+        variant="body1"
+        sx={{ fontWeight: "bold", fontSize: "20px", textAlign: "center" }}
+      >
+        {sale.num_pizzas_ordered} <br />
+      </Typography>
+    ))}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        padding: "10px",
+      }}
+    >
+      <Divider sx={{ width: "160px" }} />
+    </div>
+    {sales.map((sale, index) => (
+      <Typography key={index} variant="body1" sx={{ fontSize: "14px", padding: "10px", textAlign: "center" }}>
+        {formattedDate}
+      </Typography>
+    ))}
+  </>
+)}
+
+{showDatePicker && (
+  <div style={{ display: "flex", justifyContent: "center"}}>
+    <input
+      type="date"
+      id="targetDate"
+      value={targetDate}
+      onChange={handleDateChange}
+      style={{
+        textAlign: "center",
+        padding: "0",   // Remove the padding
+        border: "none", // Remove the border
+        outline: "none", // Remove the outline
+      }}
+    />
+    <button
+      style={{
+        backgroundColor: "blue",
+        color: "white",
+        border: "none",
+        padding: "6px 10px",
+        fontSize: "14px",
+        cursor: "pointer",
+        margin: "5px",
+      }}
+      onClick={handleOkButtonClick}
+      onMouseOver={(e) => (e.target.style.backgroundColor = "darkblue")}
+      onMouseOut={(e) => (e.target.style.backgroundColor = "blue")}
+    >
+      Ok
+    </button>
+  </div>
+)}
+
+
         {!showDatePicker && (
           <IconButton
             color={formattedDate ? "primary" : "blue"}

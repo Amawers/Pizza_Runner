@@ -111,66 +111,70 @@ export default function TableTwo() {
         </Typography>
 
         {showData && (
-          <>
-            {data.map((order, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center", // Add this line to align items horizontally
-                  marginTop: "7px",
-                }}
-              >
-                <Typography variant="body1" sx={{ fontWeight: "bold", padding: "0px" }}>
-                  {order.pizza_name} {order.order_count}
-                </Typography>
-              </div>
-            ))}
+  <>
+    {data.map((order, index) => (
+      <div
+        key={index}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "7px",
+        }}
+      >
+        <Typography variant="body1" sx={{ fontWeight: "bold", padding: "0px" }}>
+          {order.pizza_name} {order.order_count}
+        </Typography>
+      </div>
+    ))}
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                padding: "10px",
-                marginTop: "-10px", // Add this line to remove spacing
-              }}
-            >
-              <Divider sx={{ width: "160px" }} />
-            </div>
+    <div style={{ display: "flex", justifyContent: "center", padding: "10px", marginTop: "-10px" }}>
+      <Divider sx={{ width: "160px" }} />
+    </div>
 
-            <Typography variant="body1" sx={{ fontSize: "14px" }}>
-              {formattedDate}
-            </Typography>
-          </>
-        )}
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Typography variant="body1" sx={{ fontSize: "14px" }}>
+        {formattedDate}
+      </Typography>
+    </div>
+  </>
+)}
 
-        {showDatePicker && (
-          <div>
-            <input
-              type="date"
-              id="targetDate"
-              value={targetDate}
-              onChange={handleDateChange}
-            />
-            <button
-              style={{
-                backgroundColor: "blue",
-                color: "white",
-                border: "none",
-                padding: "6px 10px",
-                fontSize: "14px",
-                cursor: "pointer",
-                margin: "5px",
-              }}
-              onClick={handleOkButtonClick}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "darkblue")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "blue")}
-            >
-              Ok
-            </button>
-          </div>
-        )}
+
+{showDatePicker && (
+  <div style={{ display: "flex", justifyContent: "center", marginTop: "5px" }}>
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <input
+        type="date"
+        id="targetDate"
+        value={targetDate}
+        onChange={handleDateChange}
+        style={{
+          textAlign: "center",
+          padding: "0",
+          border: "none",
+          outline: "none",
+        }}
+      />
+      <button
+        style={{
+          backgroundColor: "blue",
+          color: "white",
+          border: "none",
+          padding: "6px 10px",
+          fontSize: "14px",
+          cursor: "pointer",
+          margin: "5px",
+        }}
+        onClick={handleOkButtonClick}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "darkblue")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "blue")}
+      >
+        Ok
+      </button>
+    </div>
+  </div>
+)}
 
         {!showDatePicker && (
           <IconButton

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import React, { useEffect, useState } from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 function CardAbove() {
   return (
@@ -21,24 +21,26 @@ function CardAbove() {
           marginBottom: "-30px",
           backgroundColor: "red",
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
-        <span style={{ padding: "10px", color: "white", fontWeight: "bolder" }}>Successful Orders</span>
+        <span style={{ padding: "10px", color: "white", fontWeight: "bolder" }}>
+          Successful Orders
+        </span>
       </Paper>
     </div>
   );
 }
 
 const headStyle = {
-  fontSize: '12px',
-  color: 'gray',
-  fontWeight: 'bold',
+  fontSize: "12px",
+  color: "gray",
+  fontWeight: "bold",
   paddingTop: "50px",
 };
 
 const rowStyle = {
-  fontSize: '12px',
+  fontSize: "12px",
 };
 
 export default function TableFour() {
@@ -46,11 +48,11 @@ export default function TableFour() {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost/successful-orders.php');
+      const response = await fetch("http://localhost/successful-orders.php");
       const data = await response.json();
       setOrders(data);
     } catch (error) {
-      console.error('Error fetching successful orders data:', error);
+      console.error("Error fetching successful orders data:", error);
     }
   };
 
@@ -69,7 +71,10 @@ export default function TableFour() {
       <CardAbove />
       <Paper elevation={12} sx={{ padding: "20px" }}>
         <TableContainer>
-          <Table sx={{ minWidth: 650, padding: "100px" }} aria-label="simple table">
+          <Table
+            sx={{ minWidth: 650, padding: "100px" }}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell align="right" style={headStyle}>
@@ -85,7 +90,10 @@ export default function TableFour() {
             </TableHead>
             <TableBody>
               {orders.map((order, index) => (
-                <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
                   <TableCell align="right" style={rowStyle}>
                     {order.order_id}
                   </TableCell>

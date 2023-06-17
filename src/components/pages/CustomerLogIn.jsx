@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Box, Typography, TextField, Button } from "@mui/material";
+import Modal from '@mui/material/Modal';
+
+import { Paper, Box, Typography, TextField, Button } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Image from "mui-image";
-
-import Stack from "@mui/material/Stack";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import bgImage from "../../assets/images/bg-home.png";
+import Link from "@mui/material/Link";
 import "../../styling/Home.css";
 
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const inputFieldIcon = {
   margin: "4px",
@@ -19,54 +18,66 @@ const inputFieldIcon = {
 };
 
 const formTitleStyle = {
-  marginBottom: "4px",
   fontFamily: "'Carter One', cursive",
+  margin: "5px"
 };
 
 const formInputStyle = {
-  margin: "normal",
   required: true,
-  fullWidth: true,
 };
 
 const formButtonStyle = {
   type: "submit",
   fullWidth: true,
   variant: "contained",
-  marginTop: "12px",
-  marginBottom: "8px",
 };
 
 const errorTextStyle = {
   color: "red",
-  marginTop: "0.5rem",
 };
 const loginSide = {
-  position: "relative",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  width: "300px",
-  margin: "auto",
-  padding: "40px"
+  width: "320px",
+  height: "370px",
+  border: '2px solid #000',
+  boxShadow: 24,
+  bgcolor: 'background.paper'
+};
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4
 };
 
 
-const appContainerStyle = {
-  height: "100vh",
-  width: "100vw",
-  backgroundColor: "blue",
-  display: "flex",
-  justifyContent: "center",
-};
 
-function CustomerLogIn() {
-  const navigate = useNavigate();
+export default function CustomerLoginModal({ open, handleClose }) {
+    const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
+
+  const handleHomeNav = () => {
+    navigate("/");
+  };
+  const handleAdminLogIn = () => {
+    navigate("/AdminLogIn");
+  };
 
   useEffect(() => {
     let loginStatus = localStorage.getItem("loginStatus");
@@ -121,7 +132,7 @@ function CustomerLogIn() {
           }
         })
         .catch((err) => {
-          setError(err.toString());
+          setError("Invalid input. Please enter valid credentials.");
           console.log(err);
         });
     } else {
@@ -141,92 +152,29 @@ function CustomerLogIn() {
       },
     },
   });
-
   return (
-    <ThemeProvider theme={theme}>
-       <div className="back">
-        <Image
-          src="src\assets\logo\logo-pizzarunner.png"
-          fit="contain"
-          height="50px"
-          sx={{ paddingRight: "100px" }}
-        />
-      </div>
-      <div className="arrow" />
-      <AppBar  sx={{ backgroundColor: "black" }}>
-        <Toolbar sx={{ justifyContent: "flex-end" }}>
-          <Stack
-            spacing={2}
-            direction="row"
-            sx={{ marginLeft: "auto", marginRight: "auto" }}
-          >
-            <Button
-              color="inherit"
-              sx={{
-                fontFamily: "Carter One, cursive",
-                color: "#BA110C",
-                backgroundColor: "white"
-              }}
-            >
-              HOME
-            </Button>
-            <Button
-              color="inherit"
-              sx={{
-                fontFamily: "Carter One, cursive",
-                color: "#FFF6E6"
-              }}
-            >
-              ABOUT US
-            </Button>
-            <Button
-              color="inherit"
-              sx={{
-                fontFamily: "Carter One, cursive",
-                color: "#FFF6E6"
-              }}
-            >
-              CONTACT INFO
-            </Button>
-          </Stack>
-          <Stack spacing={2} direction="row">
-            <Button
-              color="inherit"
-              sx={{
-                fontFamily: "Carter One, cursive",
-                color: "black",
-                background: "linear-gradient(#9B8B6E, #FFF6E6)",
-              }}
-            >
-              LOG IN
-            </Button>
-            <Button
-              color="inherit"
-              sx={{
-                fontFamily: "Carter One, cursive",
-                color: "black",
-                background: "linear-gradient(#9B8B6E, #FFF6E6)",
-              }}
-            >
-              REGISTER
-            </Button>
-          </Stack>
-        </Toolbar>
-      </AppBar>
-      <Grid container component="main" sx={appContainerStyle}>
-        <Paper
-          sx={loginSide}
-        >
-            <Image
-              src="src\assets\logo\logo1.png"
-              fit="contain"
-              height="60px"
-              sx={{ marginBottom: 3 }}
-            />
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Paper sx={loginSide}>
+          <Image src="src\assets\logo\logo1.png" fit="contain" height="40px" />
 
-            <Typography component="h1" variant="h6" sx={formTitleStyle}>
-              Welcome Customer!
-            </Typography>
+          <Typography component="h1" variant="h6" sx={formTitleStyle}>
+            Welcome Customer!
+          </Typography>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "160px",
+              justifyContent: "space-around",
+            }}
+          >
+            <div style={{ height: "75px" }}>
               <TextField
                 error={Boolean(
                   error &&
@@ -250,7 +198,8 @@ function CustomerLogIn() {
                   endAdornment: <AlternateEmailIcon sx={inputFieldIcon} />,
                 }}
               />
-
+            </div>
+            <div style={{ height: "75px" }}>
               <TextField
                 error={Boolean(
                   error &&
@@ -275,24 +224,29 @@ function CustomerLogIn() {
                   endAdornment: <LockOutlinedIcon sx={inputFieldIcon} />,
                 }}
               />
-
-              <Button
-                variant="contained"
-                color="error"
-                sx={formButtonStyle}
-                onClick={handleSubmit}
-              >
-                Sign In
-              </Button>
-              {error && (
-                <Typography variant="body2" color="error" sx={errorTextStyle}>
-                  {error}
-                </Typography>
-              )}
+            </div>
+          </div>
+          <div style={{margin: "5px"}}>
+            <Button
+              variant="contained"
+              color="error"
+              sx={formButtonStyle}
+              onClick={handleSubmit}
+            >
+              Sign In
+            </Button>
+          </div>
+          <Link href="#" variant="body2" onClick={handleAdminLogIn}>
+            {"Sign In as Admin"}
+          </Link>
+          <div style={{ height: "25px", margin: "5px"}}>
+            {error && (
+              <Typography variant="body2" color="error" sx={errorTextStyle}>
+                {error}
+              </Typography>
+            )}
+          </div>
         </Paper>
-      </Grid>
-    </ThemeProvider>
+    </Modal>
   );
 }
-
-export default CustomerLogIn;

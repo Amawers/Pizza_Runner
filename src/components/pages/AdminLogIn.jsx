@@ -10,7 +10,7 @@ const formContainerStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "space-between"
 };
 
 const inputFieldIcon = {
@@ -54,11 +54,14 @@ const loginSide = {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  padding:"50px"
 };
 
 const appContainerStyle = {
-  height: "500px",
-  width: "1000px",
+  height: "60vh",
+  width: "100vw",
+  display: "flex", 
+  justifyContent:"center"
 };
 
 function AdminLogIn() {
@@ -136,40 +139,21 @@ function AdminLogIn() {
   const theme = createTheme({
     palette: {
       background: {
-        default: "black", // Set the default background color to black
+        default: "red", // Set the default background color to black
       },
     },
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    
+    <ThemeProvider theme={theme} sx={{backgroundColor:"red", display: "flex", justifyContent: "center"}}>
       <Grid container component="main" sx={appContainerStyle}>
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage:
-              "url(https://cottageinn.com/app/uploads/2020/10/life-pizza-meme.png)", // CHANGE
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          elevation={24}
-          component={Paper}
-        />
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={24}
-          square
-          sx={loginSide}
-        >
-          <Box sx={formContainerStyle}>
+        <Paper elevation={24} sx={{display:"flex", justifyContent:"space-between", height:"400px",width:"800px"}}>
+        <div style={{backgroundColor:"red", width:"60%", borderTopLeftRadius:"inherit", borderBottomLeftRadius:"inherit"}}>
+            asd
+        </div>
+        <div style={{padding:"40px"}}>
+        <Box sx={formContainerStyle}>
             <Image
               src="src\assets\logo\logo1.png"
               fit="contain"
@@ -252,7 +236,8 @@ function AdminLogIn() {
               )}
             </Box>
           </Box>
-        </Grid>
+        </div>
+        </Paper>
       </Grid>
     </ThemeProvider>
   );

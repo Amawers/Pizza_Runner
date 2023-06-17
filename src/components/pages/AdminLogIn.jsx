@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Box, Typography, TextField, Button } from "@mui/material";
+import Modal from '@mui/material/Modal';
+
+import { Paper, Box, Typography, TextField, Button } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Image from "mui-image";
+import Link from "@mui/material/Link";
+import "../../styling/Home.css";
 
-const formContainerStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "space-between"
-};
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const inputFieldIcon = {
   margin: "4px",
@@ -19,57 +18,46 @@ const inputFieldIcon = {
 };
 
 const formTitleStyle = {
-  marginBottom: "4px",
   fontFamily: "'Carter One', cursive",
-};
-
-const formStyle = {
-  height: "215px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
+  margin: "5px"
 };
 
 const formInputStyle = {
-  margin: "normal",
   required: true,
-  fullWidth: true,
 };
 
 const formButtonStyle = {
   type: "submit",
   fullWidth: true,
   variant: "contained",
-  marginTop: "12px",
-  marginBottom: "8px",
 };
 
 const errorTextStyle = {
   color: "red",
-  marginTop: "0.5rem",
 };
-
 const loginSide = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  padding:"50px"
+  width: "320px",
+  height: "370px",
+  border: '2px solid #000',
+  boxShadow: 24,
+  bgcolor: 'background.paper'
 };
 
-const appContainerStyle = {
-  height: "60vh",
-  width: "100vw",
-  display: "flex", 
-  justifyContent:"center"
-};
-
-function AdminLogIn() {
+function AdminLogIn({openAdmin, handleAdminClose}) {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
+
 
   useEffect(() => {
     let loginStatus = localStorage.getItem("loginStatus");
@@ -145,31 +133,18 @@ function AdminLogIn() {
   });
 
   return (
-    
-    <ThemeProvider theme={theme} sx={{backgroundColor:"red", display: "flex", justifyContent: "center"}}>
-      <Grid container component="main" sx={appContainerStyle}>
+    <Modal
+    openAdmin={openAdmin}
+      onClose={handleAdminClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
         <Paper elevation={24} sx={{display:"flex", justifyContent:"space-between", height:"400px",width:"800px"}}>
-        <div style={{backgroundColor:"red", width:"60%", borderTopLeftRadius:"inherit", borderBottomLeftRadius:"inherit"}}>
-            asd
-        </div>
-        <div style={{padding:"40px"}}>
-        <Box sx={formContainerStyle}>
-            <Image
-              src="src\assets\logo\logo1.png"
-              fit="contain"
-              height="60px"
-              sx={{ marginBottom: 3 }}
-            />
 
             <Typography component="h1" variant="h6" sx={formTitleStyle}>
               Welcome Admin
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={formStyle}
-            >
+
               <TextField
                 error={Boolean(
                   error &&
@@ -234,12 +209,8 @@ function AdminLogIn() {
                   {error}
                 </Typography>
               )}
-            </Box>
-          </Box>
-        </div>
         </Paper>
-      </Grid>
-    </ThemeProvider>
+        </Modal>
   );
 }
 

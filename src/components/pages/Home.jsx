@@ -11,14 +11,34 @@ import Image from "mui-image";
 import React, { useState } from "react";
 import CustomerLogin from "../pages/CustomerLogIn";
 
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import AdminLogIn from "../pages/AdminLogIn";
+
+
 function Home() {
   const [activeSection, setActiveSection] = useState("course");
   const [open, setOpen] = useState(false); // State variable for modal visibility
+  const [openAdmin, setOpenAdmin] = useState(false); // State variable for modal visibility
 
-  const handleLogin = () => {
-    console.log("Login clicked!");
-    setOpen(true); // Open the modal directly
+
+  const [age, setAge] = React.useState('');
+
+
+  
+  const handleChange = (event) => {
+    setAge(event.target.value);
   };
+
+    const handleCustomerLogin = () => {
+      console.log("Login clicked!");
+      setOpen(true); // Open the modal directly
+    };
+
+    const handleAdminLogin = () => {
+      console.log("Login clicked!");
+      setOpenAdmin(true); // Open the modal directly
+    };
 
   const handleLinkClick = (section) => {
     setActiveSection(section);
@@ -47,6 +67,7 @@ function Home() {
                 width: "160px",
                 fontFamily: "Carter One, cursive",
                 color: "#FFF6E6",
+                width:"220px"
               }}
             >
               Runner Pizza
@@ -101,26 +122,39 @@ function Home() {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                width: "160px",
+                width: "220px"
               }}
             >
+              
+              <Select
+            value={age}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+            sx={{
+              fontFamily: "Carter One, cursive",
+              color: "black",
+              background: "linear-gradient(#9B8B6E, #FFF6E6)",
+              height:"40px",
+              fontSize:"14px"
+            }}
+          >
+            <MenuItem value="">
+              <em>LOGIN</em>
+            </MenuItem>
+            <MenuItem onClick={handleCustomerLogin} value={10}>Customer</MenuItem>
+            <MenuItem onClick={handleAdminLogin}value={20}>Admin</MenuItem>
+          </Select>
+
               <Button
                 color="inherit"
                 sx={{
                   fontFamily: "Carter One, cursive",
                   color: "black",
                   background: "linear-gradient(#9B8B6E, #FFF6E6)",
-                }}
-                onClick={handleLogin}
-              >
-                LOG IN
-              </Button>
-              <Button
-                color="inherit"
-                sx={{
-                  fontFamily: "Carter One, cursive",
-                  color: "black",
-                  background: "linear-gradient(#9B8B6E, #FFF6E6)",
+                  height:"40px",
+                  fontSize:"14px"
+
                 }}
               >
                 REGISTER
@@ -333,6 +367,8 @@ function Home() {
         Let's Read some Articles
       </div>
       <CustomerLogin open={open} handleClose={() => setOpen(false)} />
+      <AdminLogIn openAdmin={openAdmin} handleAdminClose={() => setAdminOpen(false)} />
+
     </ThemeProvider>
   );
 }

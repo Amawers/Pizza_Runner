@@ -21,6 +21,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Fade from "@mui/material/Fade";
 import ReactDOM from "react-dom";
 import { Carousel } from "@trendyol-js/react-carousel";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -118,7 +120,7 @@ function Home(props) {
               width: "220px",
             }}
           >
-            Runner Pizza
+            Pizza Runner
           </div>
           <div>
             <AnchorLink href="#course">
@@ -160,7 +162,7 @@ function Home(props) {
                     activeSection === "contact" ? "white" : "transparent",
                 }}
               >
-                CONTACT INFO
+                QUERIES
               </Button>
             </AnchorLink>
           </div>
@@ -451,6 +453,7 @@ function Home(props) {
                 style={{
                   width: "350px",
                   height: "150px",
+                  backgroundColor: "#FFF6E6",
                 }}
               >
                 <Typography
@@ -646,7 +649,7 @@ function Home(props) {
           </div>
           <div
             style={{
-              backgroundColor: "violet",
+              backgroundColor: "",
               width: "1100px",
               height: "620px",
               display: "flex",
@@ -654,17 +657,76 @@ function Home(props) {
               alignItems: "center",
             }}
           >
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width: "650px", height:"300px", backgroundColor:"red"}}>
-              <Carousel show={3.5} slide={2} transition={0.5}>
-                <div style={{ backgroundColor: "orange", width: "400px", height:"280px" }}>
-                  We love Trendyol orange
-                </div>
-                <div style={{ backgroundColor: "violet", width: "400px", height:"280px" }}>
-                  This is our github</div>
-                  <div style={{ backgroundColor: "blue", width: "400px", height:"280px" }}>
-                  We love Trendyol green</div>
-                  <div style={{ backgroundColor: "lightgreen", width: "400px", height:"280px" }}>
-                  This is our website</div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection:"column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "900px",
+                height: "450px",
+                backgroundColor: "",
+                marginTop:"140px"
+              }}
+            ><Typography
+            sx={{
+              fontFamily: "Carter One, cursive",
+              color: "white",
+              fontSize: "26px",
+              padding: "10px"
+            }}
+          >
+            DATABASE QUERIES AND ERD MODEL
+          </Typography>
+              <Carousel
+                show={2}
+                slide={2}
+                transition={0.5}
+                rightArrow={
+                  <ArrowForwardIosIcon
+                    style={{
+                      marginTop: "130px",
+                      fontSize: 40,
+                      color: "white",
+                      alignSelf: "center",
+                    }}
+                  />
+                }
+                leftArrow={
+                  <ArrowBackIosNewIcon
+                    style={{
+                      marginTop: "130px",
+                      fontSize: 40,
+                      color: "white",
+                      alignSelf: "center",
+                    }}
+                  />
+                }
+              >
+  <Image
+                src="src\assets\images\erd.png"
+                fit="cover"
+              />
+                    <Image
+                src="src\assets\images\query1.png"
+                fit="cover"
+              />
+                 <Image
+                src="src\assets\images\query2.png"
+                fit="cover"
+              />
+                 <Image
+                src="src\assets\images\query3.png"
+                fit="cover"
+              />
+                <Image
+                src="src\assets\images\query4.png"
+                fit="cover"
+              />
+                <Image
+                src="src\assets\images\query5.png"
+                fit="cover"
+              />
               </Carousel>
             </div>
           </div>
@@ -673,7 +735,7 @@ function Home(props) {
       <div
         id="contact"
         style={{
-          backgroundColor: "blue",
+          backgroundColor: "#FFF6E6",
           height: "100vh", // Set the height of the container to cover the whole page
           width: "100vw",
           display: "flex",
@@ -685,9 +747,9 @@ function Home(props) {
         <Fab
           size="small"
           aria-label="scroll back to top"
-          style={{ color: "#FFF6E6", backgroundColor: "#126925" }}
+          style={{ color: "#FFF6E6", backgroundColor: "#126925"}}
         >
-          <KeyboardArrowUpIcon style={{ color: "#FFF6E6" }} />
+          <KeyboardArrowUpIcon style={{ color: "#FFF6E6", border:"none" }} />
         </Fab>
       </ScrollTop>
 

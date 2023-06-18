@@ -29,6 +29,7 @@ const formButtonStyle = {
   type: "submit",
   fullWidth: true,
   variant: "contained",
+  backgroundColor:"#126925"
 };
 
 const errorTextStyle = {
@@ -45,9 +46,9 @@ const loginSide = {
   justifyContent: "center",
   width: "320px",
   height: "370px",
-  border: "2px solid #000",
   boxShadow: 24,
   bgcolor: "background.paper",
+  borderRadius:"15px"
 };
 
 const style = {

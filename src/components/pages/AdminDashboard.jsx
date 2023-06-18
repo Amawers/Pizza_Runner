@@ -23,6 +23,9 @@ import TableFour from "../ui/TableFour";
 import { mainListItems, secondaryListItems } from "../ui/lisitems";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
+import bgImage from "../../assets/images/bg-home.png";
+import { Paper } from "@mui/material";
+import Button from "@mui/material/Button";
 
 function Copyright(props) {
   return (
@@ -85,8 +88,12 @@ const Drawer = styled(MuiDrawer, {
         width: theme.spacing(9),
       },
     }),
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize:"cover",
+    boxShadow: "10px 2px 4px rgba(0, 0, 0, 0.4)", // Add a slight dark shadow
   },
 }));
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -105,9 +112,9 @@ export default function Dashboard() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", backgroundColor:"#FFF6E6" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} sx={{backgroundColor:"black"}}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -120,7 +127,7 @@ export default function Dashboard() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: "36px",
-                ...(open && { display: "none" }),
+                ...(open && { display: "none" })
               }}
             >
               <MenuIcon />
@@ -143,15 +150,23 @@ export default function Dashboard() {
               variant="h6"
               color="inherit"
               noWrap
-              sx={{ flexGrow: 1 }}
+              sx={{ flexGrow: 1, fontFamily: "Carter One, cursive" }}
             >
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "black",
+                background: "linear-gradient(#9B8B6E, #FFF6E6)",
+                height: "40px",
+                fontSize: "14px",
+              }}
+              onClick={handleHome}
+            >
+              LOGOUT
+            </Button> 
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -163,26 +178,32 @@ export default function Dashboard() {
               px: [1],
             }}
           >
+            <Paper>
             <Typography
               component="h1"
               variant="h6"
               color="inherit"
               noWrap
-              sx={{  fontFamily: "Carter One, cursive"
+              sx={{  fontFamily: "Carter One, cursive",
+              color:"black",
+              padding:"5px"
             }}
             >
               Pizza Runner
             </Typography>
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
+            </Paper>
+            <IconButton onClick={toggleDrawer} sx={{color:"white", fontWeight:"bold", fontSize:"32px", backgroundColor:"black", padding:"0px", margin:"5px"}}>
+              <ChevronLeftIcon sx={{color:"white", fontWeight:"bold", fontSize:"32px"}}/>
             </IconButton>
           </Toolbar>
           
-          <Divider />
-          <List component="nav">
+          {/* <Divider /> */}
+         <Paper sx={{margin:"10px"}}>
+         <List component="nav" >
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
+            {/* <Divider sx={{ my: 1 }} /> */}
           </List>
+         </Paper>
         </Drawer>
         <Box
           component="main"
@@ -197,7 +218,7 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, backgroundColor:"#FFF6E6"}}>
             <Grid container spacing={3}>
               <Grid
                 item

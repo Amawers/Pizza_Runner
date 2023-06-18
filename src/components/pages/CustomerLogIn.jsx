@@ -65,7 +65,7 @@ const style = {
 
 
 
-export default function CustomerLoginModal({ open, handleClose }) {
+export default function CustomerLoginModal({ openA, handleClose }) {
     const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
@@ -154,7 +154,7 @@ export default function CustomerLoginModal({ open, handleClose }) {
   });
   return (
     <Modal
-      open={open}
+      open={openA}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -236,9 +236,6 @@ export default function CustomerLoginModal({ open, handleClose }) {
               Sign In
             </Button>
           </div>
-          <Link href="#" variant="body2" onClick={handleAdminLogIn}>
-            {"Sign In as Admin"}
-          </Link>
           <div style={{ height: "25px", margin: "5px"}}>
             {error && (
               <Typography variant="body2" color="error" sx={errorTextStyle}>

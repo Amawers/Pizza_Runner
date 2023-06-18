@@ -18,8 +18,8 @@ import AdminLogIn from "../pages/AdminLogIn";
 
 function Home() {
   const [activeSection, setActiveSection] = useState("course");
-  const [open, setOpen] = useState(false); // State variable for modal visibility
-  const [openAdmin, setOpenAdmin] = useState(false); // State variable for modal visibility
+  const [openA, setOpen] = useState(false); // State variable for modal visibility
+  const [openAdmin, setAdminOpen] = useState(false); // State variable for modal visibility
 
 
   const [age, setAge] = React.useState('');
@@ -37,7 +37,7 @@ function Home() {
 
     const handleAdminLogin = () => {
       console.log("Login clicked!");
-      setOpenAdmin(true); // Open the modal directly
+      setAdminOpen(true); // Open the modal directly
     };
 
   const handleLinkClick = (section) => {
@@ -366,7 +366,7 @@ function Home() {
       >
         Let's Read some Articles
       </div>
-      <CustomerLogin open={open} handleClose={() => setOpen(false)} />
+      <CustomerLogin openA={openA} handleClose={() => setOpen(false)} />
       <AdminLogIn openAdmin={openAdmin} handleAdminClose={() => setAdminOpen(false)} />
 
     </ThemeProvider>

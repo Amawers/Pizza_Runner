@@ -10,35 +10,84 @@ import { Paper } from "@mui/material";
 import Image from "mui-image";
 import React, { useState } from "react";
 import CustomerLogin from "../pages/CustomerLogIn";
-
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import AdminLogIn from "../pages/AdminLogIn";
+import PropTypes from "prop-types";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Box from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import Fade from "@mui/material/Fade";
+import ReactDOM from "react-dom";
+import { Carousel } from "@trendyol-js/react-carousel";
 
+function ScrollTop(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
 
-function Home() {
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#course"
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <Fade in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Fade>
+  );
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+function Home(props) {
   const [activeSection, setActiveSection] = useState("course");
   const [openA, setOpen] = useState(false); // State variable for modal visibility
   const [openAdmin, setAdminOpen] = useState(false); // State variable for modal visibility
 
+  const [age, setAge] = React.useState("");
 
-  const [age, setAge] = React.useState('');
-
-
-  
   const handleChange = (event) => {
     setAge(event.target.value);
   };
 
-    const handleCustomerLogin = () => {
-      console.log("Login clicked!");
-      setOpen(true); // Open the modal directly
-    };
+  const handleCustomerLogin = () => {
+    console.log("Login clicked!");
+    setOpen(true); // Open the modal directly
+  };
 
-    const handleAdminLogin = () => {
-      console.log("Login clicked!");
-      setAdminOpen(true); // Open the modal directly
-    };
+  const handleAdminLogin = () => {
+    console.log("Login clicked!");
+    setAdminOpen(true); // Open the modal directly
+  };
 
   const handleLinkClick = (section) => {
     setActiveSection(section);
@@ -54,115 +103,113 @@ function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <AppBar
-          position="fixed"
-          sx={{ backgroundColor: "black", width: "100vw" }}
-        >
-          <Toolbar sx={{ justifyContent: "space-between" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "160px",
-                fontFamily: "Carter One, cursive",
-                color: "#FFF6E6",
-                width:"220px"
-              }}
-            >
-              Runner Pizza
-            </div>
-            <div>
-              <AnchorLink href="#course">
-                <Button
-                  color={activeSection === "course" ? "primary" : "inherit"}
-                  onClick={() => handleLinkClick("course")}
-                  sx={{
-                    fontFamily: "Carter One, cursive",
-                    color: activeSection === "course" ? "#BA110C" : "#FFF",
-                    backgroundColor:
-                      activeSection === "course" ? "white" : "transparent",
-                  }}
-                >
-                  HOME
-                </Button>
-              </AnchorLink>
-              <AnchorLink href="#article">
-                <Button
-                  color={activeSection === "article" ? "primary" : "inherit"}
-                  onClick={() => handleLinkClick("article")}
-                  sx={{
-                    fontFamily: "Carter One, cursive",
-                    color:
-                      activeSection === "article" ? "#BA110C" : "#FFF6E6",
-                    backgroundColor:
-                      activeSection === "article" ? "white" : "transparent",
-                  }}
-                >
-                  ABOUT US
-                </Button>
-              </AnchorLink>
-              <AnchorLink href="#contact">
-                <Button
-                  color={activeSection === "contact" ? "primary" : "inherit"}
-                  onClick={() => handleLinkClick("contact")}
-                  sx={{
-                    fontFamily: "Carter One, cursive",
-                    color:
-                      activeSection === "contact" ? "#BA110C" : "#FFF6E6",
-                    backgroundColor:
-                      activeSection === "contact" ? "white" : "transparent",
-                  }}
-                >
-                  CONTACT INFO
-                </Button>
-              </AnchorLink>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "220px"
-              }}
-            >
-              
-              <Select
-            value={age}
-            onChange={handleChange}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Without label' }}
-            sx={{
+      <AppBar
+        position="sticky"
+        sx={{ backgroundColor: "black", width: "100vw" }}
+      >
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "160px",
               fontFamily: "Carter One, cursive",
-              color: "black",
-              background: "linear-gradient(#9B8B6E, #FFF6E6)",
-              height:"40px",
-              fontSize:"14px"
+              color: "#FFF6E6",
+              width: "220px",
             }}
           >
-            <MenuItem value="">
-              <em>LOGIN</em>
-            </MenuItem>
-            <MenuItem onClick={handleCustomerLogin} value={10}>Customer</MenuItem>
-            <MenuItem onClick={handleAdminLogin}value={20}>Admin</MenuItem>
-          </Select>
-
+            Runner Pizza
+          </div>
+          <div>
+            <AnchorLink href="#course">
               <Button
-                color="inherit"
+                color={activeSection === "course" ? "primary" : "inherit"}
+                onClick={() => handleLinkClick("course")}
                 sx={{
                   fontFamily: "Carter One, cursive",
-                  color: "black",
-                  background: "linear-gradient(#9B8B6E, #FFF6E6)",
-                  height:"40px",
-                  fontSize:"14px"
-
+                  color: activeSection === "course" ? "#BA110C" : "#FFF",
+                  backgroundColor:
+                    activeSection === "course" ? "white" : "transparent",
                 }}
               >
-                REGISTER
+                HOME
               </Button>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
+            </AnchorLink>
+            <AnchorLink href="#article">
+              <Button
+                color={activeSection === "article" ? "primary" : "inherit"}
+                onClick={() => handleLinkClick("article")}
+                sx={{
+                  fontFamily: "Carter One, cursive",
+                  color: activeSection === "article" ? "#BA110C" : "#FFF6E6",
+                  backgroundColor:
+                    activeSection === "article" ? "white" : "transparent",
+                }}
+              >
+                ABOUT US
+              </Button>
+            </AnchorLink>
+            <AnchorLink href="#contact">
+              <Button
+                color={activeSection === "contact" ? "primary" : "inherit"}
+                onClick={() => handleLinkClick("contact")}
+                sx={{
+                  fontFamily: "Carter One, cursive",
+                  color: activeSection === "contact" ? "#BA110C" : "#FFF6E6",
+                  backgroundColor:
+                    activeSection === "contact" ? "white" : "transparent",
+                }}
+              >
+                CONTACT INFO
+              </Button>
+            </AnchorLink>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "220px",
+            }}
+          >
+            <Select
+              value={age}
+              onChange={handleChange}
+              displayEmpty
+              inputProps={{ "aria-label": "Without label" }}
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "black",
+                background: "linear-gradient(#9B8B6E, #FFF6E6)",
+                height: "40px",
+                fontSize: "14px",
+              }}
+            >
+              <MenuItem value="">
+                <em>LOGIN</em>
+              </MenuItem>
+              <MenuItem onClick={handleCustomerLogin} value={10}>
+                Customer
+              </MenuItem>
+              <MenuItem onClick={handleAdminLogin} value={20}>
+                Admin
+              </MenuItem>
+            </Select>
+
+            <Button
+              color="inherit"
+              sx={{
+                fontFamily: "Carter One, cursive",
+                color: "black",
+                background: "linear-gradient(#9B8B6E, #FFF6E6)",
+                height: "40px",
+                fontSize: "14px",
+              }}
+            >
+              REGISTER
+            </Button>
+          </div>
+        </Toolbar>
+      </AppBar>
       <div
         className="background-image"
         id="course"
@@ -356,19 +403,299 @@ function Home() {
       </div>
       <div
         id="article"
-        style={{ backgroundColor: "red", height: "720px", width: "100vw" }}
+        style={{
+          background: "#FFF6E6",
+          height: "100vh", // Set the height of the container to cover the whole page
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        Let's Read some Articles
+        <Paper
+          style={{
+            backgroundColor: "#126925",
+            zIndex: "69",
+            width: "1100px",
+            height: "1260px", // Adjust the height as needed
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "calc(100vh - 130px)",
+          }}
+        >
+          <div
+            style={{
+              width: "1100px",
+              height: "620px",
+              marginTop: "100px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "400px",
+                height: "400px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                margin: "7px",
+              }}
+            >
+              <Paper
+                elevation={12}
+                style={{
+                  width: "350px",
+                  height: "150px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Carter One, cursive",
+                    color: "black",
+                    fontSize: "24px",
+                    padding: "10px",
+                    paddingBottom: "0px",
+                  }}
+                >
+                  Meet the team!
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "Arial, cursive",
+                    color: "black",
+                    fontSize: "12px",
+                    textAlign: "justify",
+                    padding: "10px",
+                  }}
+                >
+                  This is the final requirement for our subjects: Web Systems
+                  and Technologies, and Information Management. It involves
+                  integrating the front-end and backend applications based on
+                  the case study of Pizza Runner.
+                </Typography>
+              </Paper>
+              <div style={{ position: "relative", backgroundColor: "violet" }}>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    width: "150px",
+                    height: "150px",
+                    position: "absolute",
+                    zIndex: 2,
+                    marginTop: "-15px",
+                    marginLeft: "15px",
+                    backgroundColor: "#126925",
+                  }}
+                >
+                  <Image src="src\assets\images\kenneth.jpg" fit="cover" />
+                </Paper>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    width: "400px",
+                    height: "150px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end", // Changed from "flex-start"
+                    justifyContent: "center",
+                    backgroundColor: "#FFF6E6",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "Carter One, cursive",
+                      color: "black",
+                      fontSize: "14px",
+                      padding: "10px",
+                      paddingBottom: "0px",
+                    }}
+                  >
+                    Kenneth Jhun N. Balino
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Arial, cursive",
+                      color: "black",
+                      fontSize: "12px",
+                      padding: "10px",
+                    }}
+                  >
+                    Back-end Developer
+                  </Typography>
+                </Paper>
+              </div>
+            </div>
+            <div
+              style={{
+                margin: "7px",
+                width: "400px",
+                height: "400px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <div style={{ position: "relative", backgroundColor: "violet" }}>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    width: "150px",
+                    height: "150px",
+                    position: "absolute",
+                    zIndex: 2,
+                    marginTop: "-15px",
+                    marginLeft: "15px",
+                    backgroundColor: "#126925",
+                  }}
+                >
+                  <Image src="src\assets\images\michole.jpg" fit="cover" />
+                </Paper>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    width: "400px",
+                    height: "150px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end", // Changed from "flex-start"
+                    justifyContent: "center",
+                    backgroundColor: "#FFF6E6",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "Carter One, cursive",
+                      color: "black",
+                      fontSize: "14px",
+                      padding: "10px",
+                      paddingBottom: "0px",
+                    }}
+                  >
+                    Michole Angelo A. Catublas
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Arial, cursive",
+                      color: "black",
+                      fontSize: "12px",
+                      padding: "10px",
+                    }}
+                  >
+                    System and Web Designer
+                  </Typography>
+                </Paper>
+              </div>
+
+              <div style={{ position: "relative", backgroundColor: "violet" }}>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    width: "150px",
+                    height: "150px",
+                    position: "absolute",
+                    zIndex: 2,
+                    marginTop: "-15px",
+                    marginLeft: "15px",
+                    backgroundColor: "#126925",
+                  }}
+                >
+                  <Image src="src\assets\images\christian.jpg" fit="cover" />
+                </Paper>
+                <Paper
+                  elevation={12}
+                  sx={{
+                    width: "400px",
+                    height: "150px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end", // Changed from "flex-start"
+                    justifyContent: "center",
+                    backgroundColor: "#FFF6E6",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "Carter One, cursive",
+                      color: "black",
+                      fontSize: "14px",
+                      padding: "10px",
+                      paddingBottom: "0px",
+                    }}
+                  >
+                    Christian Jericho A. Dacoroon
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Arial, cursive",
+                      color: "black",
+                      fontSize: "12px",
+                      padding: "10px",
+                    }}
+                  >
+                    Front-end Developer
+                  </Typography>
+                </Paper>
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              backgroundColor: "violet",
+              width: "1100px",
+              height: "620px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width: "650px", height:"300px", backgroundColor:"red"}}>
+              <Carousel show={3.5} slide={2} transition={0.5}>
+                <div style={{ backgroundColor: "orange", width: "400px", height:"280px" }}>
+                  We love Trendyol orange
+                </div>
+                <div style={{ backgroundColor: "violet", width: "400px", height:"280px" }}>
+                  This is our github</div>
+                  <div style={{ backgroundColor: "blue", width: "400px", height:"280px" }}>
+                  We love Trendyol green</div>
+                  <div style={{ backgroundColor: "lightgreen", width: "400px", height:"280px" }}>
+                  This is our website</div>
+              </Carousel>
+            </div>
+          </div>
+        </Paper>
       </div>
       <div
         id="contact"
-        style={{ backgroundColor: "green", height: "720px", width: "100vw" }}
-      >
-        Let's Read some Articles
-      </div>
-      <CustomerLogin openA={openA} handleClose={() => setOpen(false)} />
-      <AdminLogIn openAdmin={openAdmin} handleAdminClose={() => setAdminOpen(false)} />
+        style={{
+          backgroundColor: "blue",
+          height: "100vh", // Set the height of the container to cover the whole page
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      ></div>
+      <ScrollTop {...props}>
+        <Fab
+          size="small"
+          aria-label="scroll back to top"
+          style={{ color: "#FFF6E6", backgroundColor: "#126925" }}
+        >
+          <KeyboardArrowUpIcon style={{ color: "#FFF6E6" }} />
+        </Fab>
+      </ScrollTop>
 
+      <CustomerLogin openA={openA} handleClose={() => setOpen(false)} />
+      <AdminLogIn
+        openAdmin={openAdmin}
+        handleAdminClose={() => setAdminOpen(false)}
+      />
     </ThemeProvider>
   );
 }

@@ -20,6 +20,10 @@ import TableOne from "../ui/TableOne";
 import TableTwo from "../ui/TableTwo";
 import TableThree from "../ui/TableThree";
 import TableFour from "../ui/TableFour";
+import TableFive from "../ui/TableFive";
+import TableSix from "../ui/TableSix";
+import TableSeven from "../ui/TableSeven";
+
 import { mainListItems, secondaryListItems } from "../ui/lisitems";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
@@ -44,6 +48,8 @@ function Copyright(props) {
     </Typography>
   );
 }
+
+
 
 const drawerWidth = 240;
 
@@ -100,6 +106,19 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const navigate = useNavigate();
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#tablesix"
+    );
+  
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+      });
+    }
+  };
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -197,12 +216,9 @@ export default function Dashboard() {
             </IconButton>
           </Toolbar>
           
-          {/* <Divider /> */}
          <Paper sx={{margin:"10px"}}>
-         <List component="nav" >
-            {mainListItems}
-            {/* <Divider sx={{ my: 1 }} /> */}
-          </List>
+         <List component="nav">{mainListItems(handleClick)}</List>
+
          </Paper>
         </Drawer>
         <Box
@@ -231,11 +247,18 @@ export default function Dashboard() {
               <Grid item xs={12}>
                 <TableThree />
               </Grid>
-              {/* Recent Deposits */}
               <Grid item xs={12}>
                 <TableFour />
               </Grid>
-              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <TableFive />
+              </Grid>
+              <Grid item xs={12}>
+                <TableSix id="tablesix"/>
+              </Grid>
+              <Grid item xs={12}>
+                <TableSeven />
+              </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>

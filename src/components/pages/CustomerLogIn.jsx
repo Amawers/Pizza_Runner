@@ -30,7 +30,12 @@ const formButtonStyle = {
   type: "submit",
   fullWidth: true,
   variant: "contained",
+  backgroundColor: "#126925",
+  "&:hover": {
+    backgroundColor: "#3d8d48", // Change this value to the lighter color you desire
+  },
 };
+
 
 const errorTextStyle = {
   color: "red",
@@ -48,7 +53,8 @@ const loginSide = {
   height: "370px",
   border: '2px solid #000',
   boxShadow: 24,
-  bgcolor: 'background.paper'
+  bgcolor: 'background.paper',
+  borderRadius:"15px"
 };
 
 const style = {

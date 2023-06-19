@@ -29,8 +29,12 @@ const formButtonStyle = {
   type: "submit",
   fullWidth: true,
   variant: "contained",
-  backgroundColor:"#126925"
+  backgroundColor: "#126925",
+  "&:hover": {
+    backgroundColor: "#3d8d48", // Change this value to the lighter color you desire
+  },
 };
+
 
 const errorTextStyle = {
   color: "red",

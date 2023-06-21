@@ -352,6 +352,7 @@ function Home(props) {
                   backgroundColor: "#126925",
                   fontWeight: "bold",
                 }}
+                onClick={handleCustomerLogin}
               >
                 Order
               </Button>

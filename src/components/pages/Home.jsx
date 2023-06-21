@@ -9,6 +9,7 @@ import "../../styling/Home.css";
 import { Paper } from "@mui/material";
 import Image from "mui-image";
 import React, { useState } from "react";
+import CustomerRegistration from "../pages/CustomerRegistration";
 import CustomerLogin from "../pages/CustomerLogIn";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -74,11 +75,17 @@ function Home(props) {
   const [activeSection, setActiveSection] = useState("course");
   const [openA, setOpen] = useState(false); // State variable for modal visibility
   const [openAdmin, setAdminOpen] = useState(false); // State variable for modal visibility
+  const [openRegistration, setRegistrationOpen] = useState(false); // State variable for modal visibility
 
   const [age, setAge] = React.useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
+  };
+
+  const handleCustomerRegistration = () => {
+    console.log("Registration Ongoing!");
+    setRegistrationOpen(true); // Open the modal directly
   };
 
   const handleCustomerLogin = () => {
@@ -206,6 +213,7 @@ function Home(props) {
                 height: "40px",
                 fontSize: "14px",
               }}
+              onClick={handleCustomerRegistration}
             >
               REGISTER
             </Button>
@@ -759,6 +767,8 @@ function Home(props) {
         openAdmin={openAdmin}
         handleAdminClose={() => setAdminOpen(false)}
       />
+    <CustomerRegistration openRegistration={openRegistration} handleRegistrationClose={() => setRegistrationOpen(false)} />
+
     </ThemeProvider>
   );
 }

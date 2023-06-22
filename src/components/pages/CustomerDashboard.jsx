@@ -1,4 +1,3 @@
-import CustomerOrder from "../ui/CustomerOrder";
 import * as React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -24,25 +23,26 @@ import TableFour from "../ui/TableFour";
 import TableFive from "../ui/TableFive";
 import TableSix from "../ui/TableSix";
 import TableSeven from "../ui/TableSeven";
-import { useState } from 'react';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import AnchorLink from "react-anchor-link-smooth-scroll";
-
+import CustomerOrder from "../ui/CustomerOrder"
 import { mainListItems, secondaryListItems } from "../ui/lisitems";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/bg-home.png";
 import { Paper } from "@mui/material";
 import Button from "@mui/material/Button";
+
+import { useState } from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PeopleIcon from "@mui/icons-material/People";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import LayersIcon from "@mui/icons-material/Layers";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 function Copyright(props) {
   return (
@@ -61,8 +61,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-
 
 const drawerWidth = 240;
 
@@ -88,7 +86,7 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
-    position: "relative",
+    position: "relative", // Add position: sticky
     whiteSpace: "nowrap",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -108,11 +106,10 @@ const Drawer = styled(MuiDrawer, {
       },
     }),
     backgroundImage: `url(${bgImage})`,
-    backgroundSize:"cover",
+    backgroundSize: "cover",
     boxShadow: "10px 2px 4px rgba(0, 0, 0, 0.4)", // Add a slight dark shadow
   },
 }));
-
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -121,16 +118,20 @@ export default function CustomerDashboard() {
   const navigate = useNavigate();
 
   const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#mike"
-    );
+    event.preventDefault();
 
-    if (anchor) {
-      anchor.scrollIntoView({
-        block: "center",
+    const targetId = event.currentTarget.getAttribute("href"); // Use event.currentTarget instead of event.target
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
         behavior: "smooth",
+        block: "start",
+        
       });
     }
+
+    console.log("Clicked link:", targetId); // Add this line for debugging
   };
 
   const [open, setOpen] = React.useState(true);
@@ -144,9 +145,13 @@ export default function CustomerDashboard() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: "flex", backgroundColor:"#FFF6E6" }}>
+      <Box sx={{ display: "flex", backgroundColor: "#FFF6E6", width: "100vw", height:"100vh"}}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} sx={{backgroundColor:"black"}}>
+        <AppBar
+          position="fixed"
+          open={open}
+          sx={{ backgroundColor: "black" }}
+        >
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -159,7 +164,7 @@ export default function CustomerDashboard() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: "36px",
-                ...(open && { display: "none" })
+                ...(open && { display: "none" }),
               }}
             >
               <MenuIcon />
@@ -184,7 +189,7 @@ export default function CustomerDashboard() {
               noWrap
               sx={{ flexGrow: 1, fontFamily: "Carter One, cursive" }}
             >
-              Dashboard
+              Customer Dashboard
             </Typography>
             <Button
               color="inherit"
@@ -198,48 +203,62 @@ export default function CustomerDashboard() {
               onClick={handleHome}
             >
               LOGOUT
-            </Button> 
+            </Button>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer position="fixed" variant="permanent" open={open} sx={{height:"100vh"}}>
           <Toolbar
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
-              px: [1],
+              px: [1]
             }}
           >
             <Paper>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{  fontFamily: "Carter One, cursive",
-              color:"black",
-              padding:"5px"
-            }}
-            >
-              Pizza Runner
-            </Typography>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{
+                  fontFamily: "Carter One, cursive",
+                  color: "black",
+                  padding: "5px",
+                }}
+              >
+                Pizza Runner
+              </Typography>
             </Paper>
-            <IconButton onClick={toggleDrawer} sx={{color:"white", fontWeight:"bold", fontSize:"32px", backgroundColor:"black", padding:"0px", margin:"5px"}}>
-              <ChevronLeftIcon sx={{color:"white", fontWeight:"bold", fontSize:"32px"}}/>
+            <IconButton
+              onClick={toggleDrawer}
+              sx={{
+                color: "white",
+                fontWeight: "bold",
+                fontSize: "32px",
+                backgroundColor: "black",
+                padding: "0px",
+                margin: "5px",
+              }}
+            >
+              <ChevronLeftIcon
+                sx={{ color: "white", fontWeight: "bold", fontSize: "32px" }}
+              />
             </IconButton>
           </Toolbar>
-          
-         <Paper sx={{margin:"10px"}}>
-         <List component="nav"><AnchorLink href="#mike" onClick={handleClick}>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Unique Orders" />
-    </ListItemButton>
-    </AnchorLink></List>
 
-         </Paper>
+          <Paper sx={{ margin: "10px" }}>
+            <List component="nav">
+              <AnchorLink href="#customerorder" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Your Order" />
+                </ListItemButton>
+              </AnchorLink>
+            </List>
+          </Paper>
         </Drawer>
         <Box
           component="main"
@@ -251,21 +270,19 @@ export default function CustomerDashboard() {
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
+            width: "100vw",
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, backgroundColor:"#FFF6E6"}}>
-            <Grid container spacing={3}>
-              <div id="course">
-              <CustomerOrder />
+          <Container
+            maxWidth="lg"
+            sx={{ mt: 4, mb: 4, backgroundColor: "#FFF6E6" }}
+          >
+            <div>
+              <div style={{paddingTop:"95px"}} id="customerorder">
+                <CustomerOrder />
               </div>
-              <div id="free">
-              <CustomerOrder />
-              </div>
-              <div id="mike">
-              <CustomerOrder />
-              </div>
-            </Grid>
+            </div>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
@@ -273,4 +290,3 @@ export default function CustomerDashboard() {
     </ThemeProvider>
   );
 }
-

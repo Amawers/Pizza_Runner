@@ -189,7 +189,7 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1, fontFamily: "Carter One, cursive" }}
             >
-              Dashboard
+              Admin Dashboard
             </Typography>
             <Button
               color="inherit"

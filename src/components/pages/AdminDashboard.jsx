@@ -31,6 +31,19 @@ import bgImage from "../../assets/images/bg-home.png";
 import { Paper } from "@mui/material";
 import Button from "@mui/material/Button";
 
+import { useState } from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PeopleIcon from "@mui/icons-material/People";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import LayersIcon from "@mui/icons-material/Layers";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+
 function Copyright(props) {
   return (
     <Typography
@@ -48,8 +61,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-
 
 const drawerWidth = 240;
 
@@ -75,7 +86,7 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
-    position: "relative",
+    position: "relative", // Add position: sticky
     whiteSpace: "nowrap",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -95,11 +106,10 @@ const Drawer = styled(MuiDrawer, {
       },
     }),
     backgroundImage: `url(${bgImage})`,
-    backgroundSize:"cover",
+    backgroundSize: "cover",
     boxShadow: "10px 2px 4px rgba(0, 0, 0, 0.4)", // Add a slight dark shadow
   },
 }));
-
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -108,16 +118,20 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#tablesix"
-    );
-  
-    if (anchor) {
-      anchor.scrollIntoView({
-        block: "center",
+    event.preventDefault();
+
+    const targetId = event.currentTarget.getAttribute("href"); // Use event.currentTarget instead of event.target
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
         behavior: "smooth",
+        block: "start",
+        
       });
     }
+
+    console.log("Clicked link:", targetId); // Add this line for debugging
   };
 
   const [open, setOpen] = React.useState(true);
@@ -131,9 +145,13 @@ export default function Dashboard() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: "flex", backgroundColor:"#FFF6E6" }}>
+      <Box sx={{ display: "flex", backgroundColor: "#FFF6E6", width: "100vw", height:"100vh"}}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} sx={{backgroundColor:"black"}}>
+        <AppBar
+          position="fixed"
+          open={open}
+          sx={{ backgroundColor: "black" }}
+        >
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -146,7 +164,7 @@ export default function Dashboard() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: "36px",
-                ...(open && { display: "none" })
+                ...(open && { display: "none" }),
               }}
             >
               <MenuIcon />
@@ -185,41 +203,98 @@ export default function Dashboard() {
               onClick={handleHome}
             >
               LOGOUT
-            </Button> 
+            </Button>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer position="fixed" variant="permanent" open={open} sx={{height:"100vh"}}>
           <Toolbar
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
-              px: [1],
+              px: [1]
             }}
           >
             <Paper>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{  fontFamily: "Carter One, cursive",
-              color:"black",
-              padding:"5px"
-            }}
-            >
-              Pizza Runner
-            </Typography>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{
+                  fontFamily: "Carter One, cursive",
+                  color: "black",
+                  padding: "5px",
+                }}
+              >
+                Pizza Runner
+              </Typography>
             </Paper>
-            <IconButton onClick={toggleDrawer} sx={{color:"white", fontWeight:"bold", fontSize:"32px", backgroundColor:"black", padding:"0px", margin:"5px"}}>
-              <ChevronLeftIcon sx={{color:"white", fontWeight:"bold", fontSize:"32px"}}/>
+            <IconButton
+              onClick={toggleDrawer}
+              sx={{
+                color: "white",
+                fontWeight: "bold",
+                fontSize: "32px",
+                backgroundColor: "black",
+                padding: "0px",
+                margin: "5px",
+              }}
+            >
+              <ChevronLeftIcon
+                sx={{ color: "white", fontWeight: "bold", fontSize: "32px" }}
+              />
             </IconButton>
           </Toolbar>
-          
-         <Paper sx={{margin:"10px"}}>
-         <List component="nav">{mainListItems(handleClick)}</List>
 
-         </Paper>
+          <Paper sx={{ margin: "10px" }}>
+            <List component="nav">
+              <AnchorLink href="#tablethree" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Unique Orders" />
+                </ListItemButton>
+              </AnchorLink>
+
+              <AnchorLink href="#tablefour" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Successful Orders" />
+                </ListItemButton>
+              </AnchorLink>
+
+              <AnchorLink href="#tablefive" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Audit" />
+                </ListItemButton>
+              </AnchorLink>
+
+              <AnchorLink href="#tablesix" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Customer Orders" />
+                </ListItemButton>
+              </AnchorLink>
+
+              <AnchorLink href="#tableseven" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Data mart" />
+                </ListItemButton>
+              </AnchorLink>
+            </List>
+          </Paper>
         </Drawer>
         <Box
           component="main"
@@ -231,35 +306,35 @@ export default function Dashboard() {
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
+            width: "100vw",
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, backgroundColor:"#FFF6E6"}}>
-            <Grid container spacing={3}>
-              <Grid
-                item
-                xs={12}
-                sx={{ display: "flex", justifyContent: "space-around" }}
-              >
+          <Container
+            maxWidth="lg"
+            sx={{ mt: 4, mb: 4, backgroundColor: "#FFF6E6" }}
+          >
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-around" }}>
                 <TableOne />
                 <TableTwo />
-              </Grid>
-              <Grid item xs={12}>
-                <TableThree />
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div style={{paddingTop:"95px"}} id="tablethree">
+                <TableThree/>
+              </div>
+              <div style={{paddingTop:"95px"}} id="tablefour">
                 <TableFour />
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div style={{paddingTop:"95px"}} id="tablefive">
                 <TableFive />
-              </Grid>
-              <Grid item xs={12}>
-                <TableSix id="tablesix"/>
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div style={{paddingTop:"95px"}} id="tablesix">
+                <TableSix />
+              </div>
+              <div style={{paddingTop:"95px"}} id="tableseven">
                 <TableSeven />
-              </Grid>
-            </Grid>
+              </div>
+            </div>
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

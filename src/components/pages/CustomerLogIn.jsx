@@ -77,6 +77,8 @@ export default function CustomerLoginModal({ openA, handleClose }) {
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   const handleHomeNav = () => {
     navigate("/");
@@ -134,7 +136,8 @@ export default function CustomerLoginModal({ openA, handleClose }) {
             setMsg(response[0].result);
             localStorage.setItem("login", true);
             localStorage.setItem("customerId", response[0].customer_id); // Store the customer_id
-            navigate("/CustomerDashboard", { replace: true });
+            setIsLoggedIn(true); // Set the isLoggedIn state to true
+
           }
         })
         .catch((err) => {
@@ -242,6 +245,24 @@ export default function CustomerLoginModal({ openA, handleClose }) {
               Sign In
             </Button>
           </div>
+    {isLoggedIn && (
+  <div style={{ margin: "5px" }}>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={() => navigate("/CustomerDashboard")}
+    >
+      Dashboard
+    </Button>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={() => navigate("/OrderPizza")}
+    >
+      Order
+    </Button>
+  </div>
+)}
           <div style={{ height: "25px", margin: "5px"}}>
             {error && (
               <Typography variant="body2" color="error" sx={errorTextStyle}>
@@ -253,3 +274,8 @@ export default function CustomerLoginModal({ openA, handleClose }) {
     </Modal>
   );
 }
+//////////////////////////////////////
+//////////////////////////////////////
+
+////////////////////////////////////
+////////////////////////////////////

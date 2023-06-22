@@ -7,6 +7,7 @@ import AdminLogIn from "../components/pages/AdminLogIn";
 import AdminDashboard from "../components/pages/AdminDashboard";
 import ProtectedRoute from "../components/pages/ProtectedRoute";
 import CustomerDashboard from "../components/pages/CustomerDashboard";
+import OrderPizza from "../components/ui/OrderPizza";
 
 export default function AppRoutes() {
   return (
@@ -23,6 +24,10 @@ export default function AppRoutes() {
         <Route
           path="/CustomerDashboard"
           element={<ProtectedRoute component={CustomerDashboard} />}
+        />
+        <Route
+          path="/OrderPizza"
+          element={<ProtectedRoute component={OrderPizza} />}
         />
       </Routes>
     </BrowserRouter>

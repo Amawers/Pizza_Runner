@@ -272,6 +272,10 @@ function Home(props) {
                   backgroundColor: "#126925",
                   fontWeight: "bold",
                 }}
+                onClick={() => {
+                  localStorage.setItem('selectedOrder', 1);
+                  handleCustomerLogin();
+                }}
               >
                 Order
               </Button>
@@ -360,7 +364,10 @@ function Home(props) {
                   backgroundColor: "#126925",
                   fontWeight: "bold",
                 }}
-                onClick={handleCustomerLogin}
+                onClick={() => {
+                  localStorage.setItem('selectedOrder', 2);
+                  handleCustomerLogin();
+                }}
               >
                 Order
               </Button>
@@ -768,8 +775,13 @@ function Home(props) {
         handleAdminClose={() => setAdminOpen(false)}
       />
     <CustomerRegistration openRegistration={openRegistration} handleRegistrationClose={() => setRegistrationOpen(false)} />
-
     </ThemeProvider>
   );
 }
 export default Home;
+
+////////////////////////////////////////////////
+//////////////////////////////////////////////
+
+////////////////////////////////////////////
+////////////////////////////////////////

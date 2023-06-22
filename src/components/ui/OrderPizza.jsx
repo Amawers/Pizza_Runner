@@ -3,6 +3,8 @@ import { Paper } from "@mui/material";
 import Image from "mui-image";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Modal from '@mui/material/Modal';
+
 
 export default function OrderPizza() {
   const [customerId, setCustomerId] = useState('');
@@ -70,6 +72,8 @@ export default function OrderPizza() {
   useEffect(() => {
     const customerId = localStorage.getItem('customerId');
     setCustomerId(customerId);
+    const pizzaId = localStorage.getItem('selectedOrder')
+    setPizzaId(pizzaId);
   }, []);
 
   const handleFormSubmit = async (event) => {
@@ -339,3 +343,8 @@ export default function OrderPizza() {
     </div>
   );
 }
+/////////////////////////////////////////
+//////////////////////////////////////
+
+/////////////////////////////////////
+////////////////////////////////////////

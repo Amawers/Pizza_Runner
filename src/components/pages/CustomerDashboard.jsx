@@ -9,7 +9,7 @@ export default function CustomerDashboard() {
     <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
     <AdminDashboardNav />
     <CustomerOrder />
-    <OrderPizza />
+    {/* <OrderPizza /> */}
     </div>
   );
 }

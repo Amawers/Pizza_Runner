@@ -4,6 +4,7 @@ import Image from "mui-image";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from '@mui/material/Modal';
+import bgImage from "../../assets/images/bg-home.png";
 
 
 export default function OrderPizza() {
@@ -107,16 +108,14 @@ export default function OrderPizza() {
   };
 
   return (
-    <div>
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'100vw',  backgroundImage: `url(${bgImage})`, backgroundSize:"cover"}}>
       <Paper
         elevation={12}
         sx={{
           width: "800px",
           height: "530px",
           display: "flex",
-          justifyContent: "space-between",
-          margin: "-12px",
-        }}
+          justifyContent: "center"        }}
       >
         <div
           style={{

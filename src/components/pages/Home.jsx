@@ -124,10 +124,11 @@ function Home(props) {
               width: "160px",
               fontFamily: "Carter One, cursive",
               color: "#FFF6E6",
-              width: "220px",
+              width: "200px",
             }}
           >
-            Pizza Runner
+          <Image sx={{padding:"5px"}} src="src\assets\logo\logo1.png" fit="contain" height="40px" />
+
           </div>
           <div>
             <AnchorLink href="#course">

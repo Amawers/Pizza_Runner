@@ -8,6 +8,8 @@ import "../../styling/Home.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 
 const inputFieldIcon = {
   margin: "4px",
@@ -16,11 +18,12 @@ const inputFieldIcon = {
 
 const formTitleStyle = {
   fontFamily: "'Carter One', cursive",
-  margin: "5px"
+  margin: "20px",
 };
 
 const formInputStyle = {
   required: true,
+  margin: "20px",
 };
 
 const formButtonStyle = {
@@ -31,10 +34,12 @@ const formButtonStyle = {
   "&:hover": {
     backgroundColor: "#3d8d48",
   },
+  margin: "20px",
 };
 
 const errorTextStyle = {
   color: "red",
+  margin: "20px",
 };
 
 const registrationSide = {
@@ -51,7 +56,8 @@ const registrationSide = {
   border: '2px solid #000',
   boxShadow: 24,
   bgcolor: 'background.paper',
-  borderRadius: "15px"
+  borderRadius: "15px",
+  margin: "20px",
 };
 
 export default function CustomerRegistration({ openRegistration, handleRegistrationClose }) {
@@ -148,10 +154,12 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
       aria-describedby="modal-modal-description"
     >
       <Paper sx={registrationSide}>
-        <Image src="src\assets\logo\logo1.png" fit="contain" height="40px" />
+        <Image src="src\assets\logo\logo1.png" fit="contain" height="35px" />
+        <div style={{marginBottom:"20px"}}>
         <Typography component="h1" variant="h6" sx={formTitleStyle}>
           Customer Registration
         </Typography>
+        </div>
         <div
           style={{
             display: "flex",
@@ -169,6 +177,9 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
               onChange={(e) => handleInputChange(e, "id")}
               helperText={error && id === "" && "Incorrect entry."}
               sx={formInputStyle}
+              InputProps={{
+                endAdornment: <Grid3x3Icon sx={inputFieldIcon} />,
+              }}
             />
           </div>
           <div style={{ height: "75px" }}>
@@ -180,6 +191,9 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
               onChange={(e) => handleInputChange(e, "name")}
               helperText={error && name === "" && "Incorrect entry."}
               sx={formInputStyle}
+              InputProps={{
+                endAdornment: <AccountCircleIcon sx={inputFieldIcon} />,
+              }}
             />
           </div>
           <div style={{ height: "75px" }}>
@@ -200,7 +214,7 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
               }}
             />
           </div>
-          <div style={{ height: "75px", margin:"5px"}}>
+          <div style={{ height: "75px"}}>
             <TextField
               error={Boolean(error && pass === "")}
               name="password"
@@ -216,7 +230,7 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
             />
           </div>
         </div>
-        <div style={{ margin: "15px" }}>
+        <div style={{ marginTop: "55px" }}>
           <Button
             variant="contained"
             color="error"
@@ -226,7 +240,7 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
             Register
           </Button>
         </div>
-        <div style={{ height: "25px", margin: "5px" }}>
+        <div style={{ height: "15px"}}>
           {error && (
             <Typography variant="body2" color="error" sx={errorTextStyle}>
               {error}
@@ -238,14 +252,6 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
             </Typography>
           )}
         </div>
-        <Link
-          component="button"
-          variant="body2"
-          onClick={handleCustomerLogIn}
-          sx={{ margin: "5px" }}
-        >
-          Already have an account? Sign In
-        </Link>
       </Paper>
     </Modal>
   );

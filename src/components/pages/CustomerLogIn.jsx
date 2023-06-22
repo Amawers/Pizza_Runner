@@ -50,7 +50,7 @@ const loginSide = {
   alignItems: "center",
   justifyContent: "center",
   width: "320px",
-  height: "370px",
+  height: "400px",
   border: '2px solid #000',
   boxShadow: 24,
   bgcolor: 'background.paper',
@@ -251,6 +251,7 @@ export default function CustomerLoginModal({ openA, handleClose }) {
       variant="contained"
       color="primary"
       onClick={() => navigate("/CustomerDashboard")}
+      style={{marginRight:"10px"}}
     >
       Dashboard
     </Button>

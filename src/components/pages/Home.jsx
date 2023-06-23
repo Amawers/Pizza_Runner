@@ -270,13 +270,15 @@ function Home(props) {
                 sx={{
                   marginTop: "-70px",
                   width: "100px",
-                  backgroundColor: "#126925",
                   fontWeight: "bold",
+                  backgroundColor:"#126925"
                 }}
                 onClick={() => {
                   localStorage.setItem('selectedOrder', 1);
                   handleCustomerLogin();
                 }}
+                onMouseOver={(e) => e.target.style.backgroundColor = "#0F4A1F"}
+  onMouseLeave={(e) => e.target.style.backgroundColor = "#126925"}
               >
                 Order
               </Button>
@@ -326,7 +328,7 @@ function Home(props) {
               </Typography>
             </div>
           </Paper>
-          <div style={{}}>
+          <div style={{marginLeft:"-5px"}}>
             <Image
               src="src\assets\images\test.png"
               fit="contain"
@@ -362,13 +364,15 @@ function Home(props) {
                 sx={{
                   marginTop: "-70px",
                   width: "100px",
-                  backgroundColor: "#126925",
                   fontWeight: "bold",
+                  backgroundColor:"#126925"
                 }}
                 onClick={() => {
                   localStorage.setItem('selectedOrder', 2);
                   handleCustomerLogin();
                 }}
+                onMouseOver={(e) => e.target.style.backgroundColor = "#0F4A1F"}
+  onMouseLeave={(e) => e.target.style.backgroundColor = "#126925"}
               >
                 Order
               </Button>
@@ -545,7 +549,7 @@ function Home(props) {
                       padding: "10px",
                     }}
                   >
-                    Back-end Developer
+                    IT2R1
                   </Typography>
                 </Paper>
               </div>
@@ -607,7 +611,7 @@ function Home(props) {
                       padding: "10px",
                     }}
                   >
-                    System and Web Designer
+                    IT2R1
                   </Typography>
                 </Paper>
               </div>
@@ -658,7 +662,7 @@ function Home(props) {
                       padding: "10px",
                     }}
                   >
-                    Front-end Developer
+                    IT2R1
                   </Typography>
                 </Paper>
               </div>
@@ -680,10 +684,10 @@ function Home(props) {
                 flexDirection:"column",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "900px",
+                width: "1100px",
                 height: "450px",
                 backgroundColor: "",
-                marginTop:"140px"
+                marginTop:"90px"
               }}
             ><Typography
             sx={{
@@ -702,20 +706,20 @@ function Home(props) {
                 rightArrow={
                   <ArrowForwardIosIcon
                     style={{
-                      marginTop: "130px",
+                      marginTop: "160px",
                       fontSize: 40,
                       color: "white",
-                      alignSelf: "center",
+                      alignSelf: "center"
                     }}
                   />
                 }
                 leftArrow={
                   <ArrowBackIosNewIcon
                     style={{
-                      marginTop: "130px",
+                      marginTop: "160px",
                       fontSize: 40,
                       color: "white",
-                      alignSelf: "center",
+                      alignSelf: "center"
                     }}
                   />
                 }
@@ -786,3 +790,5 @@ export default Home;
 
 ////////////////////////////////////////////
 ////////////////////////////////////////
+
+/////////////*******************888888888 */

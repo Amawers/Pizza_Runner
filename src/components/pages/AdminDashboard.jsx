@@ -23,14 +23,15 @@ import TableFour from "../ui/TableFour";
 import TableFive from "../ui/TableFive";
 import TableSix from "../ui/TableSix";
 import TableSeven from "../ui/TableSeven";
-
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
+import CheckIcon from '@mui/icons-material/Check';
 import { mainListItems, secondaryListItems } from "../ui/lisitems";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/bg-home.png";
 import { Paper } from "@mui/material";
 import Button from "@mui/material/Button";
-
+import WarehouseIcon from '@mui/icons-material/Warehouse';
 import { useState } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -44,23 +45,6 @@ import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -252,45 +236,45 @@ export default function Dashboard() {
               <AnchorLink href="#tablethree" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    <LocalPizzaIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Unique Orders" />
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Unique Orders" />
                 </ListItemButton>
               </AnchorLink>
 
               <AnchorLink href="#tablefour" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    <CheckIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Successful Orders" />
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Successful Orders" />
                 </ListItemButton>
               </AnchorLink>
 
               <AnchorLink href="#tablefive" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    <BarChartIcon  />
                   </ListItemIcon>
-                  <ListItemText primary="Audit" />
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Audit" />
                 </ListItemButton>
               </AnchorLink>
 
               <AnchorLink href="#tablesix" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    <ShoppingCartIcon  />
                   </ListItemIcon>
-                  <ListItemText primary="Customer Orders" />
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Customer Orders" />
                 </ListItemButton>
               </AnchorLink>
 
               <AnchorLink href="#tableseven" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    <WarehouseIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Data mart" />
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Data mart" />
                 </ListItemButton>
               </AnchorLink>
             </List>
@@ -312,7 +296,7 @@ export default function Dashboard() {
           <Toolbar />
           <Container
             maxWidth="lg"
-            sx={{ mt: 4, mb: 4, backgroundColor: "#FFF6E6" }}
+            sx={{ mt: 4, mb: 4}}
           >
             <div>
               <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -335,7 +319,6 @@ export default function Dashboard() {
                 <TableSeven />
               </div>
             </div>
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

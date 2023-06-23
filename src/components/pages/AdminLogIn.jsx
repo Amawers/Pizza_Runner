@@ -1,5 +1,4 @@
 import Modal from "@mui/material/Modal";
-
 import { Paper, Box, Typography, TextField, Button } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";

@@ -6,8 +6,8 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Image from "mui-image";
 import Link from "@mui/material/Link";
 import "../../styling/Home.css";
-
-
+import DvrIcon from '@mui/icons-material/Dvr';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -50,7 +50,7 @@ const loginSide = {
   alignItems: "center",
   justifyContent: "center",
   width: "320px",
-  height: "400px",
+  height: "440px",
   border: '2px solid #000',
   boxShadow: 24,
   bgcolor: 'background.paper',
@@ -246,22 +246,27 @@ export default function CustomerLoginModal({ openA, handleClose }) {
             </Button>
           </div>
     {isLoggedIn && (
-  <div style={{ margin: "5px" }}>
+  <div style={{ margin: "5px", display:"flex", flexDirection:"column"}}>
+    <div style={{display:"flex", alignItems:"center"}}>
+    <DvrIcon style={{marginRight:"5px"}}/>
     <Button
       variant="contained"
-      color="primary"
+      style={{background: "linear-gradient(#9B8B6E, #FFF6E6)", fontFamily:"Carter One, cursive", color:"black"}}
       onClick={() => navigate("/CustomerDashboard")}
-      style={{marginRight:"10px"}}
     >
       Dashboard
     </Button>
+    </div>
+    <div style={{display:"flex", alignItems:"center", marginTop:"10px"}}>
+    <AddShoppingCartIcon style={{marginRight:"5px"}}/>
     <Button
       variant="contained"
-      color="primary"
+      style={{background: "linear-gradient(#9B8B6E, #FFF6E6)", fontFamily:"Carter One, cursive", color:"black", width:"125px"}}
       onClick={() => navigate("/OrderPizza")}
     >
       Order
     </Button>
+    </div>
   </div>
 )}
           <div style={{ height: "25px", margin: "5px"}}>

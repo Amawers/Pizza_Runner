@@ -43,24 +43,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 
 const drawerWidth = 240;
 
@@ -252,9 +235,9 @@ export default function CustomerDashboard() {
               <AnchorLink href="#customerorder" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    <LocalPizzaIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Your Order" />
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }}>Your Orders</ListItemText>
                 </ListItemButton>
               </AnchorLink>
             </List>
@@ -276,14 +259,13 @@ export default function CustomerDashboard() {
           <Toolbar />
           <Container
             maxWidth="lg"
-            sx={{ mt: 4, mb: 4, backgroundColor: "#FFF6E6" }}
+            sx={{ mt: 4, mb: 4}}
           >
             <div>
               <div style={{paddingTop:"95px"}} id="customerorder">
                 <CustomerOrder />
               </div>
             </div>
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>

@@ -19,7 +19,7 @@ function CardAbove() {
           width: "880px",
           height: "64px",
           marginBottom: "-30px",
-          backgroundColor: "pink",
+          backgroundColor: "royalblue",
           display: "flex",
           alignItems: "center"
         }}
@@ -84,15 +84,15 @@ export default function TableSix() {
         <Table sx={{ minWidth: 650, padding: "100px"}} aria-label="simple table">
           <TableHead >
             <TableRow>
-              <TableCell align="right" style={headStyle}>customer_id</TableCell>
-              <TableCell align="right" style={headStyle}>order_id</TableCell>
-              <TableCell align="right" style={headStyle}>pizza_id</TableCell>
-              <TableCell align="right" style={headStyle}>topping_exclusions</TableCell>
-              <TableCell align="right" style={headStyle}>topping_extras</TableCell>
-              <TableCell align="right" style={headStyle}>order_date</TableCell>
-              <TableCell align="right" style={headStyle}>order_time</TableCell>
-              <TableCell align="right" style={headStyle}>runner_id</TableCell>
-              <TableCell align="right" style={headStyle}>Action</TableCell>
+              <TableCell align="right" style={headStyle}>CUSTOMER ID</TableCell>
+              <TableCell align="right" style={headStyle}>ORDER ID</TableCell>
+              <TableCell align="right" style={headStyle}>PIZZA ID</TableCell>
+              <TableCell align="right" style={headStyle}>EXCLUSIONS</TableCell>
+              <TableCell align="right" style={headStyle}>EXTRAS</TableCell>
+              <TableCell align="right" style={headStyle}>ORDER DATE</TableCell>
+              <TableCell align="right" style={headStyle}>ORDER TIME</TableCell>
+              <TableCell align="right" style={headStyle}>RUNNER ID</TableCell>
+              <TableCell align="right" style={headStyle}>ACTION</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -107,7 +107,19 @@ export default function TableSix() {
                 <TableCell align="right" style={rowStyle}>{order.order_time}</TableCell>
                 <TableCell align="right" style={rowStyle}>{order.runner_id}</TableCell>
                 <TableCell align="right" style={rowStyle}>
-                  <button onClick={() => handleCancel(order.order_id, order.runner_id)}>Cancel</button>
+                <button
+  style={{
+    backgroundColor: "red",
+    fontFamily: "Carter One, cursive",
+    color: "white",
+    transition: "background-color 0.3s ease",
+  }}
+  onClick={() => handleCancel(order.order_id, order.runner_id)}
+  onMouseOver={(e) => e.target.style.backgroundColor = "darkred"}
+  onMouseLeave={(e) => e.target.style.backgroundColor = "red"}
+>
+  Cancel
+</button>
                 </TableCell>
               </TableRow>
             ))}
@@ -118,3 +130,7 @@ export default function TableSix() {
     </>
   );
 }
+//beforrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+//beforrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+//beforrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+

@@ -29,7 +29,16 @@ function CardAbove() {
     </div>
   );
 }
+const headStyle = {
+  fontSize: "12px",
+  color: "gray",
+  fontWeight: "bold",
+  paddingTop: "50px",
+};
 
+const rowStyle = {
+  fontSize: "12px",
+};
 export default function TableFive() {
   const [orders, setOrders] = useState([]);
 
@@ -62,19 +71,19 @@ export default function TableFive() {
         <Table sx={{ minWidth: 650, padding: "100px"}} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">order_id</TableCell>
-              <TableCell align="right">runner_id</TableCell>
-              <TableCell align="right">cancellation_datetime</TableCell>
-              <TableCell align="right">cancellation_type</TableCell>
+              <TableCell align="right" style={headStyle}>ORDER ID</TableCell>
+              <TableCell align="right" style={headStyle}>RUNNER ID</TableCell>
+              <TableCell align="right" style={headStyle}>CANCELLATION DATE&TIME</TableCell>
+              <TableCell align="right" style={headStyle}>CANCELLATION TYPE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orders.map((order, index) => (
               <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="right">{order.order_id}</TableCell>
-                <TableCell align="right">{order.runner_id}</TableCell>
-                <TableCell align="right">{order.cancellation_datetime}</TableCell>
-                <TableCell align="right">{order.cancellation_type}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.order_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.runner_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.cancellation_datetime}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.cancellation_type}</TableCell>
               </TableRow>
             ))}
           </TableBody>

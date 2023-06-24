@@ -46,7 +46,7 @@ export default function TableSix() {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost/customer-orders.php');
+      const response = await fetch('http://localhost/orders-all.php');
       const data = await response.json();
       setOrders(data);
     } catch (error) {
@@ -54,22 +54,23 @@ export default function TableSix() {
     }
   };
 
-  const handleCancel = async (orderId, runnerId) => {
-    try {
-      await fetch('http://localhost/cancel-order.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `order_id=${orderId}&runner_id=${runnerId}`,
-      });
+ const handleCancel = async (orderId, runnerId) => {
+  try {
+    await fetch('http://localhost/cancel-order.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `order_id=${orderId}&runner_id=${runnerId}&cancellation_type=Restaurant Cancellation`, // Pass cancellation_type as 1 for "Restaurant Cancellation"
+    });
 
-      console.log(`Order with ID ${orderId} canceled successfully`);
-      setOrders(prevOrders => prevOrders.filter(order => order.order_id !== orderId));
-    } catch (error) {
-      console.error('Error canceling the order:', error);
-    }
-  };
+    console.log(`Order with ID ${orderId} canceled successfully`);
+    setOrders(prevOrders => prevOrders.filter(order => order.order_id !== orderId));
+  } catch (error) {
+    console.error('Error canceling the order:', error);
+  }
+};
+
 
   useEffect(() => {
     fetchOrders();

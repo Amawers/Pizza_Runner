@@ -58,12 +58,12 @@ export default function CustomerOrder() {
 
   const handleCancel = async (orderId, pizzaId) => {
     try {
-      await fetch('http://localhost/cancel-order.php', {
+      await fetch('http://localhost/cancel-order-customer.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `order_id=${orderId}&pizza_id=${pizzaId}`,
+        body: `order_id=${orderId}&pizza_id=${pizzaId}&cancellation_type=Customer Cancellation`,
       });
 
       console.log(`Order with ID ${orderId} canceled successfully`);
@@ -72,6 +72,7 @@ export default function CustomerOrder() {
       console.error('Error canceling the order:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchOrders();
@@ -113,7 +114,13 @@ export default function CustomerOrder() {
                   <TableCell align="right">{order.order_time}</TableCell>
                   <TableCell align="right">{order.runner_id}</TableCell>
                   <TableCell align="right">
-                    <button onClick={() => handleCancel(order.order_id, order.pizza_id)}>Cancel</button>
+                    <button onClick={() => handleCancel(order.order_id, order.pizza_id)}  style={{
+    backgroundColor: "red",
+    fontFamily: "Carter One, cursive",
+    color: "white",
+    transition: "background-color 0.3s ease",
+  }} onMouseOver={(e) => e.target.style.backgroundColor = "darkred"}
+  onMouseLeave={(e) => e.target.style.backgroundColor = "red"}>Cancel</button>
                   </TableCell>
                 </TableRow>
               ))}

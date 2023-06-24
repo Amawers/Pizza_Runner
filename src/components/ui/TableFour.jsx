@@ -25,7 +25,7 @@ function CardAbove() {
         }}
       >
         <span style={{ padding: "10px", color: "white", fontWeight: "bolder" }}>
-          Successful Orders
+          Successful & Ongoing Orders
         </span>
       </Paper>
     </div>

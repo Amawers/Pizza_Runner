@@ -149,6 +149,8 @@ export default function OrderPizza() {
     } catch (error) {
       console.error('Error inserting data:', error);
     }
+    console.log("handleFormSubmit called");
+
   };
 
   return (

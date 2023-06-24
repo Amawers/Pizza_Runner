@@ -62,7 +62,6 @@ const registrationSide = {
 
 export default function CustomerRegistration({ openRegistration, handleRegistrationClose }) {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -84,9 +83,7 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
 
   const handleInputChange = (e, type) => {
     setError("");
-    if (type === "id") {
-      setId(e.target.value);
-    } else if (type === "name") {
+    if (type === "name") {
       setName(e.target.value);
     } else if (type === "email") {
       setEmail(e.target.value);
@@ -96,13 +93,12 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
   };
 
   function registerSubmit() {
-    if (id !== "" && name !== "" && email !== "" && pass !== "") {
+    if (name !== "" && email !== "" && pass !== "") {
       const url = "http://localhost/register-customer.php";
       const headers = {
         "Content-Type": "application/json",
       };
       const data = {
-        id: id,
         name: name,
         email: email,
         pass: pass,
@@ -118,7 +114,6 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
             setError(response.error);
           } else {
             setMsg(response.message);
-            setId("");
             setName("");
             setEmail("");
             setPass("");
@@ -168,20 +163,6 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
             justifyContent: "space-around",
           }}
         >
-          <div style={{ height: "75px" }}>
-            <TextField
-              error={Boolean(error && id === "")}
-              label="ID"
-              name="id"
-              value={id}
-              onChange={(e) => handleInputChange(e, "id")}
-              helperText={error && id === "" && "Incorrect entry."}
-              sx={formInputStyle}
-              InputProps={{
-                endAdornment: <Grid3x3Icon sx={inputFieldIcon} />,
-              }}
-            />
-          </div>
           <div style={{ height: "75px" }}>
             <TextField
               error={Boolean(error && name === "")}
@@ -256,3 +237,4 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
     </Modal>
   );
 }
+//////////////////beforrreeee///////////

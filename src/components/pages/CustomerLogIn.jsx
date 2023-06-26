@@ -137,6 +137,7 @@ export default function CustomerLoginModal({ openA, handleClose }) {
             localStorage.setItem("login", true);
             localStorage.setItem("customerId", response[0].customer_id); // Store the customer_id
             setIsLoggedIn(true); // Set the isLoggedIn state to true
+            navigate("/CustomerDashboard"); // Navigate to the CustomerDashboard
 
           }
         })
@@ -244,37 +245,6 @@ export default function CustomerLoginModal({ openA, handleClose }) {
             >
               Sign In
             </Button>
-          </div>
-    {isLoggedIn && (
-  <div style={{ margin: "5px", display:"flex", flexDirection:"column"}}>
-    <div style={{display:"flex", alignItems:"center"}}>
-    <DvrIcon style={{marginRight:"5px"}}/>
-    <Button
-      variant="contained"
-      style={{background: "linear-gradient(#9B8B6E, #FFF6E6)", fontFamily:"Carter One, cursive", color:"black"}}
-      onClick={() => navigate("/CustomerDashboard")}
-    >
-      Dashboard
-    </Button>
-    </div>
-    <div style={{display:"flex", alignItems:"center", marginTop:"10px"}}>
-    <AddShoppingCartIcon style={{marginRight:"5px"}}/>
-    <Button
-      variant="contained"
-      style={{background: "linear-gradient(#9B8B6E, #FFF6E6)", fontFamily:"Carter One, cursive", color:"black", width:"125px"}}
-      onClick={() => navigate("/OrderPizza")}
-    >
-      Order
-    </Button>
-    </div>
-  </div>
-)}
-          <div style={{ height: "25px", margin: "5px"}}>
-            {error && (
-              <Typography variant="body2" color="error" sx={errorTextStyle}>
-                {error}
-              </Typography>
-            )}
           </div>
         </Paper>
     </Modal>

@@ -266,22 +266,23 @@ function Home(props) {
                 sx={{ marginTop: "-50px" }}
               />
               <Button
-                variant="contained"
-                sx={{
-                  marginTop: "-70px",
-                  width: "100px",
-                  fontWeight: "bold",
-                  backgroundColor:"#126925"
-                }}
-                onClick={() => {
-                  localStorage.setItem('selectedOrder', 1);
-                  handleCustomerLogin();
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = "#0F4A1F"}
+  variant="contained"
+  sx={{
+    marginTop: "-70px",
+    width: "100px",
+    fontWeight: "bold",
+    backgroundColor:"#126925"
+  }}
+  onClick={() => {
+    localStorage.setItem('selectedOrder', 1);
+    setOpen(true); // Open the login modal
+  }}
+  onMouseOver={(e) => e.target.style.backgroundColor = "#0F4A1F"}
   onMouseLeave={(e) => e.target.style.backgroundColor = "#126925"}
-              >
-                Order
-              </Button>
+>
+  Order
+</Button>
+
             </div>
             <div
               style={{

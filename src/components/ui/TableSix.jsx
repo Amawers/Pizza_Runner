@@ -46,30 +46,47 @@ export default function TableSix() {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost/orders-all.php');
+      const customerId = localStorage.getItem("customerId"); // Fetch the customer_id
+      const response = await fetch(
+        `http://localhost/customer-orders-unique.php?customer_id=${customerId}`
+      );
       const data = await response.json();
-      setOrders(data);
+
+      // Add item_id property to each order object
+      const ordersWithItemId = data.map(order => ({ ...order, order_id: order.order_id }));
+      setOrders(ordersWithItemId);
+      console.log(customerId); // Log the orders in the console to check the values
     } catch (error) {
-      console.error('Error fetching orders data:', error);
+      console.error("Error fetching orders data:", error);
     }
   };
 
- const handleCancel = async (orderId, runnerId) => {
-  try {
-    await fetch('http://localhost/cancel-order.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `order_id=${orderId}&runner_id=${runnerId}&cancellation_type=Restaurant Cancellation`, // Pass cancellation_type as 1 for "Restaurant Cancellation"
-    });
-
-    console.log(`Order with ID ${orderId} canceled successfully`);
-    setOrders(prevOrders => prevOrders.filter(order => order.order_id !== orderId));
-  } catch (error) {
-    console.error('Error canceling the order:', error);
-  }
-};
+  const handleCancel = async (order_id) => {
+    try {
+      await fetch("http://localhost/cancel-order-customer.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `order_id=${order_id}&cancellation_type=Restaurant Cancellation`,
+      });
+      console.log(`Order with order ID ${order_id} canceled successfully`);
+  
+      // Retrieve the index of the order with the specified order_id
+      const orderIndex = orders.findIndex(order => order.order_id === order_id);
+  
+      if (orderIndex !== -1) {
+        // Create a new array by removing the order at the specified index
+        const updatedOrders = [...orders];
+        updatedOrders.splice(orderIndex, 1);
+  
+        // Update the state with the updated orders
+        setOrders(updatedOrders);
+      }
+    } catch (error) {
+      console.error("Error canceling the order:", error);
+    }
+  };
 
 
   useEffect(() => {
@@ -86,8 +103,7 @@ export default function TableSix() {
           <TableHead >
             <TableRow>
               <TableCell align="right" style={headStyle}>CUSTOMER ID</TableCell>
-              <TableCell align="right" style={headStyle}>ORDER ID</TableCell>
-              <TableCell align="right" style={headStyle}>PIZZA ID</TableCell>
+              <TableCell align="right" style={headStyle}>PIZZA</TableCell>
               <TableCell align="right" style={headStyle}>EXCLUSIONS</TableCell>
               <TableCell align="right" style={headStyle}>EXTRAS</TableCell>
               <TableCell align="right" style={headStyle}>ORDER DATE</TableCell>
@@ -100,8 +116,7 @@ export default function TableSix() {
             {orders.map((order, index) => (
               <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell align="right" style={rowStyle}>{order.customer_id}</TableCell>
-                <TableCell align="right" style={rowStyle}>{order.order_id}</TableCell>
-                <TableCell align="right" style={rowStyle}>{order.pizza_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.pizza_names}</TableCell>
                 <TableCell align="right" style={rowStyle}>{order.topping_exclusions}</TableCell>
                 <TableCell align="right" style={rowStyle}>{order.topping_extras}</TableCell>
                 <TableCell align="right" style={rowStyle}>{order.order_date}</TableCell>

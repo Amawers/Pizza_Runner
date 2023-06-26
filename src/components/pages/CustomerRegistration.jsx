@@ -1,3 +1,7 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 import Modal from '@mui/material/Modal';
 import { Paper, Box, Typography, TextField, Button } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -5,9 +9,6 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import Image from "mui-image";
 import Link from "@mui/material/Link";
 import "../../styling/Home.css";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 
@@ -103,17 +104,12 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
         email: email,
         pass: pass,
       };
-      fetch(url, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
+      axios.post(url, data, { headers })
         .then((response) => {
-          if (response.error) {
-            setError(response.error);
+          if (response.data.error) {
+            setError(response.data.error);
           } else {
-            setMsg(response.message);
+            setMsg(response.data.message);
             setName("");
             setEmail("");
             setPass("");
@@ -237,4 +233,3 @@ export default function CustomerRegistration({ openRegistration, handleRegistrat
     </Modal>
   );
 }
-//////////////////beforrreeee///////////

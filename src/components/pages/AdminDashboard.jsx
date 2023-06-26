@@ -44,7 +44,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-
+import AddchartIcon from '@mui/icons-material/Addchart';
 
 const drawerWidth = 240;
 
@@ -233,21 +233,22 @@ export default function Dashboard() {
 
           <Paper sx={{ margin: "10px" }}>
             <List component="nav">
+
+            <AnchorLink href="#cards" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddchartIcon  />
+                  </ListItemIcon>
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Today's Report" />
+                </ListItemButton>
+              </AnchorLink>
+
               <AnchorLink href="#tablethree" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
                     <LocalPizzaIcon />
                   </ListItemIcon>
                   <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Unique Orders" />
-                </ListItemButton>
-              </AnchorLink>
-
-              <AnchorLink href="#tablefour" onClick={handleClick}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <CheckIcon />
-                  </ListItemIcon>
-                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Successful Orders" />
                 </ListItemButton>
               </AnchorLink>
 
@@ -266,15 +267,6 @@ export default function Dashboard() {
                     <ShoppingCartIcon  />
                   </ListItemIcon>
                   <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Customer Orders" />
-                </ListItemButton>
-              </AnchorLink>
-
-              <AnchorLink href="#tableseven" onClick={handleClick}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <WarehouseIcon />
-                  </ListItemIcon>
-                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }} primary="Data mart" />
                 </ListItemButton>
               </AnchorLink>
             </List>
@@ -299,24 +291,19 @@ export default function Dashboard() {
             sx={{ mt: 4, mb: 4}}
           >
             <div>
-              <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <div style={{ display: "flex", justifyContent: "space-around", paddingTop:"95px" }} id="cards">
                 <TableOne />
                 <TableTwo />
               </div>
               <div style={{paddingTop:"95px"}} id="tablethree">
                 <TableThree/>
               </div>
-              <div style={{paddingTop:"95px"}} id="tablefour">
-                <TableFour />
-              </div>
+
               <div style={{paddingTop:"95px"}} id="tablefive">
                 <TableFive />
               </div>
               <div style={{paddingTop:"95px"}} id="tablesix">
                 <TableSix />
-              </div>
-              <div style={{paddingTop:"95px"}} id="tableseven">
-                <TableSeven />
               </div>
             </div>
           </Container>

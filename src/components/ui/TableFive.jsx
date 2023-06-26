@@ -71,8 +71,7 @@ export default function TableFive() {
         <Table sx={{ minWidth: 650, padding: "100px"}} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="right" style={headStyle}>ORDER ID</TableCell>
-              <TableCell align="right" style={headStyle}>RUNNER ID</TableCell>
+              <TableCell align="right" style={headStyle}>CANCELLATION ID</TableCell>
               <TableCell align="right" style={headStyle}>CANCELLATION DATE&TIME</TableCell>
               <TableCell align="right" style={headStyle}>CANCELLATION TYPE</TableCell>
             </TableRow>
@@ -80,8 +79,7 @@ export default function TableFive() {
           <TableBody>
             {orders.map((order, index) => (
               <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="right" style={rowStyle}>{order.order_id}</TableCell>
-                <TableCell align="right" style={rowStyle}>{order.runner_id}</TableCell>
+                <TableCell align="right" style={rowStyle}>{order.id}</TableCell>
                 <TableCell align="right" style={rowStyle}>{order.cancellation_datetime}</TableCell>
                 <TableCell align="right" style={rowStyle}>{order.cancellation_type}</TableCell>
               </TableRow>

@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useEffect } from "react";
+
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -7,24 +9,14 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
+
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import TableOne from "../ui/TableOne";
-import TableTwo from "../ui/TableTwo";
-import TableThree from "../ui/TableThree";
-import TableFour from "../ui/TableFour";
-import TableFive from "../ui/TableFive";
-import TableSix from "../ui/TableSix";
-import TableSeven from "../ui/TableSeven";
 import CustomerOrder from "../ui/CustomerOrder"
-import { mainListItems, secondaryListItems } from "../ui/lisitems";
+import OrderPizza from "../ui/OrderPizza"
+
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 import bgImage from "../../assets/images/bg-home.png";
@@ -38,9 +30,6 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
@@ -99,6 +88,13 @@ const defaultTheme = createTheme();
 
 export default function CustomerDashboard() {
   const navigate = useNavigate();
+  const [order_id, setOrder_id] = useState("");
+
+  useEffect(() => {
+    setOrder_id("");
+  }, []);
+
+  
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -232,6 +228,15 @@ export default function CustomerDashboard() {
 
           <Paper sx={{ margin: "10px" }}>
             <List component="nav">
+            <AnchorLink href="#orderpizza" onClick={handleClick}>
+                <ListItemButton>
+                  <ListItemIcon>
+                  <ShoppingCartIcon  />
+                  </ListItemIcon>
+                  <ListItemText style={{ fontFamily: "Arial  ", color:"black", fontWeight:"bold" }}>Order Pizza</ListItemText>
+                </ListItemButton>
+              </AnchorLink>
+
               <AnchorLink href="#customerorder" onClick={handleClick}>
                 <ListItemButton>
                   <ListItemIcon>
@@ -262,6 +267,9 @@ export default function CustomerDashboard() {
             sx={{ mt: 4, mb: 4}}
           >
             <div>
+            <div style={{paddingTop:"95px"}} id="orderpizza">
+            <OrderPizza order_id={order_id} />
+              </div>
               <div style={{paddingTop:"95px"}} id="customerorder">
                 <CustomerOrder />
               </div>

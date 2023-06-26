@@ -82,9 +82,6 @@ export default function TableThree() {
                   CUSTOMER ID
                 </TableCell>
                 <TableCell align="right" style={headStyle}>
-                  ORDER ID
-                </TableCell>
-                <TableCell align="right" style={headStyle}>
                   PIZZA NAMES
                 </TableCell>
                 <TableCell align="right" style={headStyle}>
@@ -109,9 +106,6 @@ export default function TableThree() {
                 >
                   <TableCell align="right" style={rowStyle}>
                     {order.customer_id}
-                  </TableCell>
-                  <TableCell align="right" style={rowStyle}>
-                    {order.order_id}
                   </TableCell>
                   <TableCell align="right" style={rowStyle}>
                     {order.pizza_names}

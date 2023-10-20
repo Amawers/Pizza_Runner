@@ -25,6 +25,9 @@ import { Carousel } from "@trendyol-js/react-carousel";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import logoOne from "../../assets/logo/logo1.png";
+import meat from "../../assets/images/meat.png";
+import vegetarian from "../../assets/images/vegetarian.png";
+import test from "../../assets/images/test.png";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -262,7 +265,7 @@ function Home(props) {
               }}
             >
               <Image
-                src="src\assets\images\meat.png"
+                src={meat}
                 fit="contain"
                 sx={{ marginTop: "-50px" }}
               />
@@ -331,7 +334,7 @@ function Home(props) {
           </Paper>
           <div style={{marginLeft:"-5px"}}>
             <Image
-              src="src\assets\images\test.png"
+              src={test}
               fit="contain"
               height="340px"
             />
@@ -356,7 +359,7 @@ function Home(props) {
               }}
             >
               <Image
-                src="src\assets\images\vegetarian.png"
+                src={vegetarian}
                 fit="contain"
                 sx={{ marginTop: "-50px" }}
               />

@@ -24,6 +24,7 @@ import ReactDOM from "react-dom";
 import { Carousel } from "@trendyol-js/react-carousel";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import logoOne from "../../assets/logo/logo1.png";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -127,7 +128,7 @@ function Home(props) {
               width: "200px",
             }}
           >
-          <Image sx={{padding:"5px"}} src="../../assets/logo/logo1.png" fit="contain" height="40px" />
+          <Image sx={{padding:"5px"}} src={logoOne} fit="contain" height="40px" />
 
           </div>
           <div>

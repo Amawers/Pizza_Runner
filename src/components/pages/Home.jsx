@@ -127,7 +127,7 @@ function Home(props) {
               width: "200px",
             }}
           >
-          <Image sx={{padding:"5px"}} src="\logo1.png" fit="contain" height="40px" />
+          <Image sx={{padding:"5px"}} src="../../assets/logo/logo1.png" fit="contain" height="40px" />
 
           </div>
           <div>
